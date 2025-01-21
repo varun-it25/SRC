@@ -1,56 +1,43 @@
+import { Link, useLocation } from "react-router-dom";
 import { Calendar, ChartLineIcon, ImagesIcon, LayoutDashboard, LogOut, Plus, Settings, Users } from "lucide-react";
 
+const NavItem = ({ to, icon, label, activePath }) => {
+  const isActive = activePath === to;
+
+  return (
+    <Link to={to} className={`w-full rounded py-1 px-2 flex space-x-3 items-center cursor-pointer transition-colors duration-300 ${isActive ? 'bg-zinc-900 text-white' : 'hover:bg-zinc-100 text-zinc-700'} ${isActive ? 'font-semibold' : 'font-medium'}`}>
+      <div className="flex justify-center items-center p-1">{icon}</div>
+      <p>{label}</p>
+    </Link>
+  );
+};
+
 const Sidebar = () => {
-    return (
-        <div className="Left flex flex-col py-2 h-full border-r text-black">
-            <div className='w-full space-y-[0.67rem] mt-0 text-sm p-4 font-semibold text-zinc-700'>
+  const location = useLocation();
+  return (
+    <div className="Left flex flex-col py-2 h-full border-r text-black">
+      <div className="w-full space-y-[0.67rem] mt-0 text-sm px-3 py-4 font-semibold text-zinc-700">
 
-                <div className="w-full rounded py-1 px-2 flex space-x-3 items-center cursor-pointer bg-zinc-900 text-white">
-                    <div className="flex justify-center items-center p-1"><LayoutDashboard size={20} /></div>
-                    <p>Dashboard</p>
-                </div>
+        {/* Sidebar Navigation Items */}
+        <NavItem to="/" label="Dashboard" icon={<LayoutDashboard size={20} />} activePath={location.pathname} />
+        <NavItem to="/events" label="Events" icon={<Calendar size={20} />} activePath={location.pathname} />
+        <NavItem to="/create-event" label="Create Event" icon={<Plus size={20} />} activePath={location.pathname} />
+        <NavItem to="/gallery" label="Gallery" icon={<ImagesIcon size={20} />} activePath={location.pathname} />
+        <NavItem to="/analytics" label="Analytics" icon={<ChartLineIcon size={20} />} activePath={location.pathname} />
+        <NavItem to="/members" label="Members" icon={<Users size={20} />} activePath={location.pathname} />
+        <NavItem to="/settings" label="Settings" icon={<Settings size={20} />} activePath={location.pathname} />
 
-                <div className="w-full rounded py-1 px-2 flex space-x-3 items-center cursor-pointer hover:bg-zinc-100">
-                    <div className="flex justify-center items-center p-1"><Calendar size={20} /></div>
-                    <p>Events</p>
-                </div>
+      </div>
 
-                <div className="w-full rounded py-1 px-2 flex space-x-3 items-center cursor-pointer">
-                    <div className="flex justify-center items-center p-1"><Plus size={20} /></div>
-                    <p>Create Event</p>
-                </div>
-
-                <div className="w-full rounded py-1 px-2 flex space-x-3 items-center cursor-pointer">
-                    <div className="flex justify-center items-center p-1"><ImagesIcon size={20} /></div>
-                    <p>Gallery</p>
-                </div>
-
-                <div className="w-full rounded py-1 px-2 flex space-x-3 items-center cursor-pointer">
-                    <div className="flex justify-center items-center p-1"><ChartLineIcon size={20} /></div>
-                    <p>Analytics</p>
-                </div>
-
-                <div className="w-full rounded py-1 px-2 flex space-x-3 items-center cursor-pointer">
-                    <div className="flex justify-center items-center p-1"><Users size={20} /></div>
-                    <p>Members</p>
-                </div>
-
-                <div className="w-full rounded py-1 px-2 flex space-x-3 items-center cursor-pointer">
-                    <div className="flex justify-center items-center p-1"><Settings size={20} /></div>
-                    <p>Settings</p>
-                </div>
-
-            </div>
-
-
-            <div className='flex-1 w-full flex items-end text-sm p-4 text-zinc-600 font-bold'>
-                <div className="w-full border-t-2 border-zinc-100 pt-2 px-2 flex space-x-3 items-center cursor-pointer font-semibold">
-                    <div className="flex justify-center items-center p-1"><LogOut size={24} /></div>
-                    <p>LogOut</p>
-                </div>                                                        
-            </div>
+      {/* LogOut Section */}
+      <div className='flex-1 w-full flex items-end text-sm p-4 text-zinc-600 font-bold'>
+        <div className="w-full border-t-2 border-zinc-100 pt-2 px-2 flex space-x-3 items-center cursor-pointer font-semibold">
+          <div className="flex justify-center items-center p-1"><LogOut size={24} /></div>
+          <p>LogOut</p>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-export default Sidebar
+export default Sidebar;

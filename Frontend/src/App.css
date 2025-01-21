@@ -7,7 +7,7 @@
 }
 
 .Left{
-    width: 14rem;
+    width: 15.5rem;
 }
 
 .Feedback-Chart{
@@ -32,6 +32,6 @@
 
 @media screen and (max-width: 900px) {
     .Left{
-        width: 11rem;
+        width: 13rem;
     }
 }

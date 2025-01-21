@@ -2,11 +2,11 @@ import Total_Events from '@/components/Total_Events'
 import Feedback from '../components/Feedback'
 import Recent_Events from '@/components/Recent_Events'
 import All_Buttons from '@/components/All_Buttons'
-
+import Container from '@/components/Right'
 
 const Dashboard = () => {
   return (
-    <div className='w-full h-full overflow-auto'>
+    <Container>
         <div className='w-full h-full p-6'>
 
             <div className='w-full mb-6'>
@@ -24,7 +24,7 @@ const Dashboard = () => {
             </div>            
 
         </div>
-    </div>
+    </Container>
   )
 }
 
