@@ -1,7 +1,13 @@
-const Container = (props) => {
-  return (
-    <div className='w-full h-full overflow-auto'>{props.children}</div>
-  )
+import React from 'react';
+
+interface ContainerProps {
+  children: React.ReactNode;
 }
 
-export default Container
+const Container: React.FC<ContainerProps> = (props) => {
+  return (
+    <div className='w-full h-full overflow-auto'>{props.children}</div>
+  );
+}
+
+export default Container;
