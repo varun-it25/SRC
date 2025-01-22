@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Calendar, ChartLineIcon, ImagesIcon, LayoutDashboard, LogOut, Plus, Settings, Users } from "lucide-react";
+import { Calendar, ImagesIcon, LayoutDashboard, LogOut, Plus, Settings, Users } from "lucide-react";
 
 const NavItem = ({ to, icon, label, activePath }) => {
   const isActive = activePath === to;
@@ -23,7 +23,6 @@ const Sidebar = () => {
         <NavItem to="/events" label="Events" icon={<Calendar size={20} />} activePath={location.pathname} />
         <NavItem to="/create-event" label="Create Event" icon={<Plus size={20} />} activePath={location.pathname} />
         <NavItem to="/gallery" label="Gallery" icon={<ImagesIcon size={20} />} activePath={location.pathname} />
-        <NavItem to="/analytics" label="Analytics" icon={<ChartLineIcon size={20} />} activePath={location.pathname} />
         <NavItem to="/members" label="Members" icon={<Users size={20} />} activePath={location.pathname} />
         <NavItem to="/settings" label="Settings" icon={<Settings size={20} />} activePath={location.pathname} />
 

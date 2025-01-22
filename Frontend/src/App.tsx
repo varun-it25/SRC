@@ -7,6 +7,7 @@ import CreateEvent from "./pages/Create-Event";
 import Gallery from "./pages/Gallery";
 import Events from "./pages/Events";
 import Members from "./pages/Members";
+import Settings from "./pages/Settings";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/events" element={<Events />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/members" element={<Members />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="/*" element={<Dashboard />} />
           </Routes>
         </div>

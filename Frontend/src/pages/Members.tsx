@@ -2,7 +2,7 @@ import Member from '@/components/Member'
 import Container from '@/components/Right'
 import { Button } from '@/components/ui/button'
 import { memberData } from '@/data/members'
-import { Plus } from 'lucide-react'
+import { Plus, User, UserPlus, UserPlus2 } from 'lucide-react'
 
 const Members = () => {
   return (
@@ -11,7 +11,7 @@ const Members = () => {
 
             <div className='w-full mb-7 flex justify-between items-center'>
                 <p className='font-bold text-2xl'>Members</p>
-                <Button className='bg-blue-700 hover:bg-blue-600 font-bold'><Plus />Add New Member</Button>
+                <Button className='bg-blue-700 hover:bg-blue-600 font-bold'><User />Add New Member</Button>
             </div>
 
             <div className='grid grid-cols-1 gap-6 sm:grid-cols-4'>
