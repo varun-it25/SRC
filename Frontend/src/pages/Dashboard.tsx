@@ -9,7 +9,7 @@ const Dashboard = () => {
     <Container>
         <div className='w-full h-full p-6'>
 
-            <div className='w-full mb-6'>
+            <div className='w-full mb-7'>
                 <p className='font-bold text-2xl'>SRC Dashboard</p>
             </div>
 
