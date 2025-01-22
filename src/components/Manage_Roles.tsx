@@ -6,7 +6,7 @@ import { roles } from '@/data/rolesData'
 
 function Manage_Roles(){
     return (
-        <div className='p-5 sm:p-6 border rounded-md'>
+        <div className='p-5 bg-white sm:p-6 border rounded-md'>
             <div className='w-full mb-5 flex items-center justify-between'>
                 <p className='font-semibold text-xl text-zinc-700'>All Members</p>
                 <div className='flex space-x-3'>

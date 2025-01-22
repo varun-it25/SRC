@@ -3,7 +3,7 @@ import { recentEvents } from "@/data/recentEvents"
 
 const Recent_Events = () => {
   return (
-        <div className="rounded-lg border p-6 shadow-xl">
+        <div className="rounded-lg bg-white border p-6 shadow-xl">
             
             <div className='w-full mb-4'>
                 <p className='font-semibold text-xl text-zinc-700 mt-2 sm:mt-0'>Recent Events</p>

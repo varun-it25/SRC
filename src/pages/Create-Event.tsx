@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Container from '@/components/Right'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -46,7 +46,7 @@ const CreateEvent = () => {
         </div>
 
         {/* Event Information */}
-        <div className="w-full border rounded-lg p-4 sm:p-6">
+        <div className="w-full bg-white border rounded-lg p-4 sm:p-6">
           <div className="flex space-x-3 items-center mb-4">
             <p className="py-1 bg-blue-200 px-4 font-semibold rounded-full">Step 1</p>
             <p className="font-semibold text-lg">Event Information</p>
@@ -98,7 +98,7 @@ const CreateEvent = () => {
         </div>
 
         {/* Guest Information */}
-        <div className="w-full border rounded-lg p-6">
+        <div className="w-full bg-white border rounded-lg p-6">
           <div className="flex space-x-3 items-center mb-4">
             <p className="py-1 bg-red-200 px-4 font-semibold rounded-full">Step 2</p>
             <p className="font-semibold text-lg">Guest Information</p>

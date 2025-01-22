@@ -2,7 +2,7 @@ import DonutChart from "@/components/ui/DonutChart"
 
 const Feedback = () => {
   return (
-    <div className='w-full Feedback-Chart items-center border shadow-lg rounded-lg p-4 space-y-6 sm:space-x-3'>
+    <div className='w-full bg-white Feedback-Chart items-center border shadow-lg rounded-lg p-4 space-y-6 sm:space-x-3'>
 
             <div className="w-full space-y-6 sm:space-y-4">
                 <div className='w-full'>

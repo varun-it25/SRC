@@ -8,7 +8,7 @@ function Account(){
 
     return (
         <div>
-            <div className='p-5 sm:p-6 border rounded-md mb-4'>
+            <div className='p-5 bg-white sm:p-6 border rounded-md mb-4'>
                 <div className='space-y-6'>
                     <div className="space-y-2">
                         <p className="font-semibold">Email</p>

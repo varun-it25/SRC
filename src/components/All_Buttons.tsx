@@ -3,7 +3,7 @@ import { CalendarClock, CalendarRange, Plus, UploadCloudIcon } from 'lucide-reac
 const All_Buttons = () => {
   return (
     <div className='w-full h-full grid grid-rows-2 grid-cols-2 gap-6'>
-        <div className='w-full p-6 h-full rounded-md bg-red-100 flex flex-col justify-start items-start cursor-pointer hover:bg-red-200'>
+        <div className='w-full p-6 h-full rounded-md bg-red-200 flex flex-col justify-start items-start cursor-pointer hover:bg-red-200'>
             <CalendarRange />
             <p className='font text-xl pt-3 flex'>Total<span className='hidden sm:block ml-1'> Events</span></p>
             <p className='font-bold text-2xl pt-[0.1rem]'>23</p>

@@ -11,7 +11,7 @@ interface memberData {
 
 const Member = ({name, designation, image, phone, email }: memberData) => {
   return (
-    <div className='border rounded-md flex w-full flex-col justify-center items-center p-6 shadow-lg'>
+    <div className='border bg-white rounded-md flex w-full flex-col justify-center items-center p-6 shadow-lg'>
         <div className='w-20 h-20 rounded-full border'>
           <img src={image} className='w-full h-full rounded-full object-cover' />
         </div>
