@@ -1,7 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { Calendar, ImagesIcon, LayoutDashboard, LogOut, Plus, Settings, Users } from "lucide-react";
 
-const NavItem = ({ to, icon, label, activePath }) => {
+interface navData{
+  to: string,
+  icon: React.ReactNode,
+  label: string,
+  activePath: string
+}
+
+const NavItem = ({ to, icon, label, activePath }: navData) => {
   const isActive = activePath === to;
 
   return (
@@ -16,7 +23,7 @@ const Sidebar = () => {
   const location = useLocation();
   return (
     <div className="Left flex flex-col py-2 h-full border-r text-black">
-      <div className="w-full space-y-[0.67rem] mt-0 text-sm px-3 py-4 font-semibold text-zinc-700">
+      <div className="w-full space-y-[0.67rem] mt-0 text-sm p-4 font-semibold text-zinc-700">
 
         {/* Sidebar Navigation Items */}
         <NavItem to="/" label="Dashboard" icon={<LayoutDashboard size={20} />} activePath={location.pathname} />

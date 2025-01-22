@@ -7,7 +7,7 @@
 }
 
 .Left{
-    width: 15.5rem;
+    width: 17rem;
 }
 
 .Feedback-Chart{
@@ -31,11 +31,5 @@
     }
     .Left{
         display: none;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .Left{
-        width: 13rem;
     }
 }

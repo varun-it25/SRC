@@ -10,7 +10,7 @@ const Gallery = () => {
 
             <div className='w-full mb-7 flex justify-between items-center'>
                 <p className='font-bold text-2xl'>Gallery</p>
-                <Button className='bg-blue-700 hover:bg-blue-600 font-bold'><UploadCloud />Upload New</Button>
+                <Button className='bg-blue-600 hover:bg-blue-500 font-bold'><UploadCloud />Upload More</Button>
             </div>
 
             <div className='Gallery-parent'>
