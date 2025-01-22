@@ -16,8 +16,8 @@ const Members = () => {
 
             <div className='grid grid-cols-1 gap-6 sm:grid-cols-4'>
                 {
-                    memberData.map(({name, desination, image}) => {
-                        return <Member image={image} name={name} designation={desination} />
+                    memberData.map(({name, desination, image, phone, email}) => {
+                        return <Member image={image} name={name} designation={desination} email={email} phone={phone} />
                     })
                 }
             </div>
