@@ -11,7 +11,7 @@ const Events = () => {
 
             <div className='w-full mb-7 flex justify-between items-center'>
                 <p className='font-bold text-2xl'>Events</p>
-                <Button className='bg-blue-700 hover:bg-blue-600 font-bold'><Plus />Create New</Button>
+                <Button className='bg-blue-700 hover:bg-blue-600 font-bold'><Plus />Create Event</Button>
             </div>
 
             <div className='grid grid-cols-1 gap-6 sm:grid-cols-3'>

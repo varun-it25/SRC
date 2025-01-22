@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import CreateEvent from "./pages/Create-Event";
 import Gallery from "./pages/Gallery";
 import Events from "./pages/Events";
+import Members from "./pages/Members";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/create-event" element={<CreateEvent />} />
             <Route path="/events" element={<Events />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/members" element={<Members />} />
             <Route path="/*" element={<Dashboard />} />
           </Routes>
         </div>
