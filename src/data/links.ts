@@ -1,0 +1,1 @@
+export const uplaodUrl = `https://filenow-production.up.railway.app/upload`
