@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BellDot, Calendar, ChevronRight, ImagesIcon, LayoutDashboard, LogOut, LogOutIcon, MenuIcon, Moon, Plus, Settings, Sun } from "lucide-react";
+import { BellDot, Calendar, ChevronRight, ImagesIcon, LayoutDashboard, LogOut, LogOutIcon, MenuIcon, Moon, Plus, Settings, Sun, UploadCloud, UserPlus2 } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -16,11 +16,13 @@ const Navbar = () => {
     const location = useLocation();
 
   const menuItems = [
-    { name: 'Dashboard', icon: <LayoutDashboard size={24} />, path: '/dashboard' },
-    { name: 'Events', icon: <Calendar size={24} />, path: '/events' },
-    { name: 'Create Event', icon: <Plus size={24} />, path: '/create-event' },
-    { name: 'Gallery', icon: <ImagesIcon size={24} />, path: '/gallery' },
-    { name: 'Settings', icon: <Settings size={24} />, path: '/settings' },
+    { name: 'Dashboard', icon: <LayoutDashboard size={20} />, path: '/dashboard' },
+    { name: 'Events', icon: <Calendar size={20} />, path: '/events' },
+    { name: 'Create Event', icon: <Plus size={20} />, path: '/create-event' },
+    { name: 'Upload Media', icon: <UploadCloud size={20} />, path: '/upload-media' },
+    { name: 'Gallery', icon: <ImagesIcon size={20} />, path: '/gallery' },
+    { name: 'Add Member', icon: <UserPlus2 size={20} />, path: '/add-member' },
+    { name: 'Settings', icon: <Settings size={20} />, path: '/settings' },
   ];
 
   const isActive = (path: string) => location.pathname === path ? 'bg-zinc-100 text-zinc-600' : 'text-zinc-500';
@@ -91,7 +93,7 @@ const Navbar = () => {
                         <DropdownMenuItem className="cursor-pointer">
                             <div className="flex justify-center items-center p-1 text-zinc-500"><Settings size={16} /></div>
                             Settings
-                        </DropdownMenuItem>
+                        </DropdownMenuItem>                        
                         <DropdownMenuItem className="cursor-pointer">
                             <div className="flex justify-center items-center p-1 text-zinc-500"><LogOutIcon size={16} /></div>
                             Sign Out
@@ -129,7 +131,7 @@ const Navbar = () => {
                           {
                             menuItems.map((item) => (
                                 <Link to={item.path} key={item.name} onClick={handleDrawerToggle}>
-                                    <div className={`w-full rounded p-2 flex space-x-3 items-center mb-[0.56rem] cursor-pointer ${isActive(item.path)} font-semibold text-lg`}>
+                                    <div className={`w-full rounded p-2 flex space-x-3 items-center mb-[0.56rem] cursor-pointer ${isActive(item.path)} font-semibold text`}>
                                         <div className="flex justify-center items-center p-1">{item.icon}</div>
                                         <p>{item.name}</p>
                                     </div>
