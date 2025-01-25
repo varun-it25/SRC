@@ -5,9 +5,11 @@ import Dashboard from "./pages/Dashboard";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import CreateEvent from "./pages/Create-Event";
 import Gallery from "./pages/Gallery";
+import UploadMedia from "./pages/Upload-Media";
 import Events from "./pages/Events";
 import Members from "./pages/Members";
 import Settings from "./pages/Settings";
+import Add_Member from "./pages/Add-Member";
 
 const App = () => {
   return (
@@ -22,7 +24,9 @@ const App = () => {
             <Route path="/events" element={<Events />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/members" element={<Members />} />
+            <Route path="/add-member" element={<Add_Member />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/upload-media" element={<UploadMedia />} />
             <Route path="/*" element={<Dashboard />} />
           </Routes>
         </div>

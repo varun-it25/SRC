@@ -31,7 +31,7 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex justify-center items-center space-x-3">
                 <div className="w-8 h-8 rounded-full">
-                    <img src="https://scontent.fjai2-6.fna.fbcdn.net/v/t39.30808-6/462514268_994329339374011_371810106980174002_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=vkmowPOGuSsQ7kNvgFPEpD3&_nc_zt=23&_nc_ht=scontent.fjai2-6.fna&_nc_gid=AZlHLqHH2pHE7K9OOjnPpot&oh=00_AYCjWtsCu-PHY6ylpgdAA_82ZyPtHv78iyz94m6414DIig&oe=67945EBD" className="w-full h-full rounded-full" />
+                    <img src="/src.png" className="w-full h-full rounded-full" />
                 </div>
                 <div className="whitespace-nowrap flex items-center">
                     <p className="text-black font-semibold">SRC</p>

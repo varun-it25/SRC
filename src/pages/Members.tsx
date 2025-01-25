@@ -3,6 +3,7 @@ import Container from '@/components/Right'
 import { Button } from '@/components/ui/button'
 import { memberData } from '@/data/members'
 import { User } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const Members = () => {
   return (
@@ -11,7 +12,7 @@ const Members = () => {
 
             <div className='w-full mb-7 flex justify-between items-center'>
                 <p className='font-bold text-2xl'>Members</p>
-                <Button className='bg-blue-600 hover:bg-blue-500 font-bold'><User />Add New Member</Button>
+                <Link to={`/add-member`}><Button className='bg-blue-600 hover:bg-blue-500 font-bold'><User />Add New Member</Button></Link>
             </div>
 
             <div className='grid grid-cols-1 gap-6 sm:grid-cols-4'>

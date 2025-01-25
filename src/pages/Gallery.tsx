@@ -2,6 +2,7 @@ import Container from '@/components/Right'
 import { Button } from '@/components/ui/button'
 import { images } from '@/data/galleryImages'
 import { UploadCloud } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const Gallery = () => {
   return (
@@ -10,7 +11,7 @@ const Gallery = () => {
 
             <div className='w-full mb-7 flex justify-between items-center'>
                 <p className='font-bold text-2xl'>Gallery</p>
-                <Button className='bg-blue-600 hover:bg-blue-500 font-bold'><UploadCloud />Upload More</Button>
+                <Link to={`/upload-media`}><Button className='bg-blue-600 hover:bg-blue-500 font-bold'><UploadCloud />Upload More</Button></Link>
             </div>
 
             <div className='Gallery-parent'>

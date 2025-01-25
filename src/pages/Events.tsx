@@ -3,6 +3,7 @@ import Container from '@/components/Right'
 import { Button } from '@/components/ui/button'
 import { eventData } from '@/data/eventCard'
 import { Plus } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const Events = () => {
   return (
@@ -11,7 +12,7 @@ const Events = () => {
 
             <div className='w-full mb-7 flex justify-between items-center'>
                 <p className='font-bold text-2xl'>Events</p>
-                <Button className='bg-blue-600 hover:bg-blue-500 font-bold'><Plus />Create Event</Button>
+                <Link to={`/create-event`}><Button className='bg-blue-600 hover:bg-blue-500 font-bold'><Plus />Create Event</Button></Link>
             </div>
 
             <div className='grid grid-cols-1 gap-6 sm:grid-cols-3'>
