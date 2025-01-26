@@ -1,11 +1,28 @@
 import Event from '@/components/Event'
 import Container from '@/components/Right'
 import { Button } from '@/components/ui/button'
-import { eventData } from '@/data/eventCard'
 import { Plus } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 
 const Events = () => {
+  const [events, setEvents] = useState<any[]>([])
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await axios.get('https://src-server.onrender.com/events')
+        setEvents(res.data)
+      } catch (error) {
+        console.error("Error fetching events:", error)
+      }
+    }
+    
+    fetchEvents()
+  }, [])
+
+
   return (
     <Container>
         <div className='w-full h-fit p-6'>
@@ -17,8 +34,8 @@ const Events = () => {
 
             <div className='grid grid-cols-1 gap-6 sm:grid-cols-3'>
               {
-                eventData.map(({ evendId, eventBanner, eventName, eventDate, eventTime, eventVenue, eventGuest, guestImg }) => {
-                    return <Event key={evendId} evendId={evendId} eventName={eventName} eventBanner={eventBanner}  guestImg={guestImg} eventDate={eventDate} eventGuest={eventGuest} eventTime={eventTime} eventVenue={eventVenue} />                        
+                events.map(({ _id, event_banner, event_name, event_venue, event_date, event_start_time, event_end_time, guest_image, guest_name }) => {
+                    return <Event key={_id} evendId={_id} eventName={event_name} eventBanner={event_banner}  guestImg={guest_image} eventDate={event_date} eventGuest={guest_name} eventTime={`${event_start_time} to ${event_end_time}`} eventVenue={event_venue} />                        
                 })
               }
             </div>
