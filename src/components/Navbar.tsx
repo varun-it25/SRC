@@ -31,7 +31,7 @@ const Navbar = () => {
         <div className="py-3 shadow z-10 sm:px-8 px-6 flex w-full justify-between items-center space-x-7">
 
             {/* Logo */}
-            <div className="flex justify-center items-center space-x-3">
+            <Link to={`/`} className="flex justify-center items-center space-x-3">
                 <div className="w-8 h-8 rounded-full">
                     <img src="/src.png" className="w-full h-full rounded-full" />
                 </div>
@@ -39,7 +39,7 @@ const Navbar = () => {
                     <p className="text-black font-semibold">SRC</p>
                     <span className="font-semibold text-zinc-500 pl-1 ProfileIcon">- Spiritual Research Cell</span>
                 </div>
-            </div>
+            </Link>
 
             <Input placeholder="Search something..." className="ProfileIcon" />
 
@@ -83,11 +83,6 @@ const Navbar = () => {
                                     <p className="font-normal text-zinc-400 text-xs">mukes@mail.com</p>
                                 </div>
                             </div>
-                        </DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuLabel className="bg-zinc-100 grid grid-cols-2 text-zinc-500 rounded">
-                            <button className="border w-full bg-white rounded flex justify-center items-center p-1"><Sun size={16} /></button>
-                            <button className="w-full rounded flex justify-center items-center p-1"><Moon size={16} /></button>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem className="cursor-pointer">
