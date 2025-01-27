@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { UploadCloud, User } from 'lucide-react'
 import axios from 'axios'
+import { backendUrl, mediaServerUrl } from '@/data/links'
 
 const CreateEvent = () => {
   const [eventName, setEventName] = useState('')
@@ -22,61 +23,35 @@ const CreateEvent = () => {
 
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState<'success' | 'error' | null>(null)
+  const [errorMessage, setErrorMessage] = useState('')
 
-  const handleBannerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, setter: React.Dispatch<React.SetStateAction<File | null>>) => {
     if (e.target.files) {
-      setBanner(e.target.files[0])
+      setter(e.target.files[0])
     }
   }
 
-  const handleGuestImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setGuestImage(e.target.files[0])
+  const uploadFile = async (file: File | null): Promise<string> => {
+    if (!file) return 'File not uploaded'
+    const data = new FormData()
+    data.append('file', file)
+
+    try {
+      const res = await axios.post(`${mediaServerUrl}/upload`, data)
+      return res.data.file_url
+    } catch (err) {
+      console.error(err)
+      return 'File upload failed'
     }
-  }
-
-  async function uploadBanner(): Promise<string> {
-    if (banner) {
-      let data = new FormData()
-      data.append('file', banner)
-
-      try {
-        const res = await axios.post('https://filenow-backend-production.up.railway.app/upload', data)
-        return res.data.file_url
-      } catch (err) {
-        console.error(err)
-        return 'Banner is not uploaded'
-      }
-    }
-
-    return 'Banner is not uploaded'
-  }
-
-  async function uploadProfilePic(): Promise<string> {
-    if (guestImage) {
-      let data = new FormData()
-      data.append('file', guestImage)
-
-      try {
-        const res = await axios.post('https://filenow-backend-production.up.railway.app/upload', data)
-        return res.data.file_url
-      } catch (err) {
-        console.error(err)
-        return 'Guest image is not uploaded'
-      }
-    }
-
-    return 'Guest image is not uploaded'
   }
 
   const handleSubmit = async () => {
-    setLoading(true) // Show loading spinner
-
-    const event_banner = await uploadBanner()
-    const guest_image = await uploadProfilePic()
+    setLoading(true)
+    const event_banner = await uploadFile(banner)
+    const guest_image = await uploadFile(guestImage)
 
     try {
-      const res = await axios.post('https://src-server.onrender.com/create-event', {
+      const res = await axios.post(`${backendUrl}/create-event`, {
         event_banner,
         guest_image,
         event_name: eventName,
@@ -87,15 +62,16 @@ const CreateEvent = () => {
         event_end_time: eventEndTime,
         guest_name: guestName,
         guest_email: guestEmail,
-        guest_mobile_no: guestPhone
+        guest_mobile_no: guestPhone,
       })
 
       setLoading(false)
-      setStatus('success') // Show success status
+      setStatus('success')
       console.log({ Res: res })
     } catch (err) {
       setLoading(false)
-      setStatus('error') // Show error status
+      setStatus('error')
+      setErrorMessage('Failed to create event. Please try again later.')
       console.error(err)
     }
   }
@@ -131,7 +107,7 @@ const CreateEvent = () => {
           </div>
         ) : status === 'error' ? (
           <div className="w-full bg-red-200 text-center p-4 rounded-lg">
-            <p className="font-semibold text-xl">Failed to Create Event. Please try again.</p>
+            <p className="font-semibold text-xl">{errorMessage}</p>
           </div>
         ) : (
           <>
@@ -160,7 +136,7 @@ const CreateEvent = () => {
                   </label>
                 )}
 
-                <input id="banner" type="file" className="hidden" onChange={handleBannerChange} />
+                <input id="banner" type="file" className="hidden" onChange={(e) => handleFileChange(e, setBanner)} />
 
                 <div className="space-y-1">
                   <p className="font-semibold text-xs">Name</p>
@@ -221,7 +197,7 @@ const CreateEvent = () => {
                     <label htmlFor="guestImage" className="hover:underline cursor-pointer">Upload</label>
                   )}
                 </div>
-                <input id="guestImage" type="file" className="hidden" onChange={handleGuestImage} />
+                <input id="guestImage" type="file" className="hidden" onChange={(e) => handleFileChange(e, setGuestImage)} />
 
                 <div className="space-y-1">
                   <p className="font-semibold text-xs">Name</p>

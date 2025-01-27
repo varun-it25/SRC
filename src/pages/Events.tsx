@@ -5,6 +5,7 @@ import { Plus } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { backendUrl } from '@/data/links'
 
 const Events = () => {
   const [events, setEvents] = useState<any[]>([])
@@ -12,7 +13,7 @@ const Events = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await axios.get('https://src-server.onrender.com/events')
+        const res = await axios.get(`${backendUrl}/events`)
         setEvents(res.data)
       } catch (error) {
         console.error("Error fetching events:", error)

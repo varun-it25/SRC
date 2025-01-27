@@ -1,1 +1,2 @@
-export const uplaodUrl = `https://filenow-production.up.railway.app/upload`
+export const backendUrl = `https://src-server.onrender.com`
+export const mediaServerUrl = `http://localhost:7000`

@@ -49,7 +49,7 @@ export default function Event({ evendId, eventBanner, eventName, eventDate, even
                 </div>
             </div>
 
-            <Button className='w-full' onClick={() => nav(`/${evendId}`)}>Info</Button>
+            <Button className='w-full' onClick={() => nav(`/event/${evendId}`)}>Info</Button>
         </div>
     )
 }

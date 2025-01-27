@@ -19,7 +19,7 @@ const Add_Member = () => {
     }
 
     const handleSubmit = () => {
-        console.log('Guest Info:', { guestName, guestEmail, guestPhone, role })
+        console.log('Guest Info:', { guestName, guestEmail, guestPhone, role })        
     }
 
     const isFormValid = guestName && guestEmail && guestPhone && role !== 'Select a role'
