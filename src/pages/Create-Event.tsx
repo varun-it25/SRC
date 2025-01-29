@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { UploadCloud, User } from 'lucide-react'
 import axios from 'axios'
-import { backendUrl, mediaServerUrl } from '@/data/links'
+import { backendUrl } from '@/data/links'
 
 const CreateEvent = () => {
   const [eventName, setEventName] = useState('')
@@ -35,10 +35,12 @@ const CreateEvent = () => {
     if (!file) return 'File not uploaded'
     const data = new FormData()
     data.append('file', file)
+    data.append('upload_preset', 'src_events')
+    data.append('cloud_name', 'dimqol16x')
 
     try {
-      const res = await axios.post(`${mediaServerUrl}/upload`, data)
-      return res.data.file_url
+      const res = await axios.post(`https://api.cloudinary.com/v1_1/dimqol16x/image/upload`, data)
+      return res.data.secure_url
     } catch (err) {
       console.error(err)
       return 'File upload failed'
@@ -95,7 +97,6 @@ const CreateEvent = () => {
           <p className="font-bold text-2xl">Create New Event</p>
         </div>
 
-        {/* Conditional Rendering */}
         {loading ? (
           <div className="flex justify-center items-center h-full space-x-4">
             <UploadCloud size={40} className="animate-spin" />
@@ -111,7 +112,6 @@ const CreateEvent = () => {
           </div>
         ) : (
           <>
-            {/* Event Information */}
             <div className="w-full bg-white border rounded-lg p-4 sm:p-6">
               <div className="flex space-x-3 items-center mb-4">
                 <p className="py-1 bg-blue-200 px-4 font-semibold rounded-full">Step 1</p>
@@ -169,7 +169,6 @@ const CreateEvent = () => {
               </div>
             </div>
 
-            {/* Guest Information */}
             <div className="w-full bg-white border rounded-lg p-6">
               <div className="flex space-x-3 items-center mb-4">
                 <p className="py-1 bg-red-200 px-4 font-semibold rounded-full">Step 2</p>
