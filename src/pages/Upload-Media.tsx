@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { FileUp, File, CloudUpload, Loader2, Upload } from "lucide-react"
+import { FileUp, File, CloudUpload, Loader2, Upload, UploadCloud } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { useDropzone } from "react-dropzone"
@@ -31,51 +31,44 @@ const UploadMedia = () => {
         formData.append("upload_preset", "src_gallery")
         formData.append("cloud_name", "dimqol16x")
 
-        if(file.type.includes("video")){
-          
-        try {
-
-          const res = await axios.post(
-            `https://api.cloudinary.com/v1_1/dimqol16x/video/upload`,
-            formData,
-            {
-                    headers: { "Content-Type": "multipart/form-data" },
-                    onUploadProgress: (progressEvent) => {
-                      const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-                        setProgress(percent)
-                      }
-                    }
-                  )
+        if(file.type.includes("video")){          
+          try {
+            const res = await axios.post(`https://api.cloudinary.com/v1_1/dimqol16x/video/upload`, formData, {
+              headers: { "Content-Type": "multipart/form-data" },
+              onUploadProgress: (progressEvent) => {
+                const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+                  setProgress(percent)
+                }
+            })
             setProgress(100)
             setUploaded(true)
             setUploading(false)
             toast.success("File uploaded successfully!")
             console.log(res.data)
-        } catch (error) {
+          }
+          catch (error) {
             setUploading(false)
             toast.error("Error uploading file. Please try again.")
             console.error(error)
           }
         }
 
-
         else if(file.type.includes("image")){
-        try {
-
-          const res = await axios.post(`https://api.cloudinary.com/v1_1/dimqol16x/image/upload`, formData, {
-                    headers: { "Content-Type": "multipart/form-data" },
-                    onUploadProgress: (progressEvent) => {
-                        const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-                        setProgress(percent)
-                      }
-                    }
-                  )
+          try {
+            const res = await axios.post(`https://api.cloudinary.com/v1_1/dimqol16x/image/upload`, formData, {
+              headers: { "Content-Type": "multipart/form-data" },
+              onUploadProgress: (progressEvent) => {
+              const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+                setProgress(percent)
+              }
+            })
             setProgress(100)
             setUploaded(true)
             setUploading(false)
             toast.success("File uploaded successfully!")
             console.log(res.data)
-        } catch (error) {
+          }
+          catch (error) {
             setUploading(false)
             toast.error("Error uploading file. Please try again.")
             console.error(error)
@@ -140,7 +133,7 @@ const UploadMedia = () => {
                             <div className="flex items-center space-x-2"><File size={40} /><p className="text-2xl px-4 font-semibold">{file?.name || "Upload complete!"}</p></div>
                             <div className="mt-4">
                                 <p className="text-sm text-green-600">File uploaded successfully!</p>
-                                <Button onClick={handleUploadAnother} className="mt-4 px-6 bg-blue-600 hover:bg-blue-500">Upload another file</Button>
+                                <Button onClick={handleUploadAnother} className="mt-4 px-6 bg-white text-black"><UploadCloud /> Upload another file</Button>
                             </div>
                         </div>
                     )}
