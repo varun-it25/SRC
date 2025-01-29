@@ -19,6 +19,7 @@
     "@radix-ui/react-progress": "^1.1.1",
     "@radix-ui/react-select": "^2.1.5",
     "@radix-ui/react-slot": "^1.1.1",
+    "@tanstack/react-virtual": "^3.11.3",
     "@vitejs/plugin-react": "^4.3.4",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",

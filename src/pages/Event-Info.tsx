@@ -1,10 +1,10 @@
 import '@/App.css'
-import { Button } from '@/components/ui/button';
-import { Calendar, Clock, EditIcon, IdCard, LucideTableOfContents, Mail, MapPin, Phone, User } from 'lucide-react';
-import { Link, useParams } from 'react-router-dom';
+import { Calendar, Clock, MapPin } from 'lucide-react';
+import { useParams } from 'react-router-dom';
 import Container from '@/components/Right'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { getDateStatus } from '@/lib/getDateStatus';
 
 interface resData {
     _id: string,
@@ -27,7 +27,7 @@ const EventInfo = () => {
 
   useEffect(()=>{
     async function fetchData(){
-        const response = await axios.get(`https://src-server.onrender.com/events/${id}`)
+        const response = await axios.get(`https://src-server.onrender.com/event/${id}`)
         setRes(response.data)
     }
     fetchData()
@@ -42,7 +42,15 @@ const EventInfo = () => {
             </div>
             <div className='border-zinc-400 border w-full rounded-lg p-6 sm:p-10'>
                 <div className='flex justify-between items-center font-medium mb-4'>
-                    <p className='px-4 py-1 rounded-full bg-blue-300 w-fit text-sm'>Upcoming</p>
+                    {
+                      (getDateStatus(res?.event_date) === `Upcoming`) && <p className='px-4 py-1 rounded-full bg-pink-300 w-fit text-sm'>Upcoming</p>
+                    }
+                    {
+                      (getDateStatus(res?.event_date) === `Completed`) && <p className='px-4 py-1 rounded-full bg-green-300 w-fit text-sm'>Completed</p>
+                    }
+                    {
+                      (getDateStatus(res?.event_date) === `Today`) && <p className='px-4 py-1 rounded-full bg-blue-300 w-fit text-sm'>Today</p>
+                    }
                 </div>
                 <p className='text-3xl font-semibold mb-6 sm:mb-5'>{res?.event_name}</p>
                 <p className='text-zinc-600 mb-4'>{res?.event_description}</p>
@@ -58,17 +66,17 @@ const EventInfo = () => {
                             <p className='font-medium flex text-zinc-600 items-center space-x-3'><MapPin size={24} /><span>{res?.event_venue}</span></p>
                         </div>
                         <div className='flex-col sm:flex-row flex items-center justify-between space-y-6 sm:space-y-0 space-x-0 sm:space-x-6'>
-                           <p className='font-medium flex text-zinc-600 items-center space-x-3'><Calendar size={24} /><span>{res?.event_date}</span></p>
+                           <p className='font-medium flex text-zinc-600 items-center space-x-3'><Calendar size={22} /><span>{res?.event_date}</span></p>
                         </div>
 
                         <div className='flex-col sm:flex-row flex items-center justify-between space-y-6 sm:space-y-0 space-x-0 sm:space-x-6'>
-                           <p className='font-medium flex text-zinc-600 items-center space-x-3'><Clock size={24} /><span>{`${res?.event_start_time} to ${res?.event_end_time}`}</span></p>
+                           <p className='font-medium flex text-zinc-600 items-center space-x-3'><Clock size={22} /><span>{`${res?.event_start_time} to ${res?.event_end_time}`}</span></p>
                         </div>
-
+{/* 
                         <div className='flex space-x-6'>
                           <Link to={`/`} className='text-blue-600 font-medium hover:underline'>Participation</Link>
                           <Link to={`/`} className='text-blue-600 font-medium hover:underline'>Registration</Link>
-                        </div>
+                        </div> */}
                     </div>
 
                 </div>

@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import { getDateStatus } from '@/lib/getDateStatus'
 import { CalendarRange, Clock, MapPin } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
@@ -18,7 +19,7 @@ export default function Event({ evendId, eventBanner, eventName, eventDate, even
 
     return(
         <div className='p-4 rounded-md border bg-white shadow-md'>
-            <div className='w-full mb-3'>
+            <div className='w-full mb-4'>
                 <div className='w-full h-28 rounded-md'>
                     <img src={eventBanner} className='object-cover w-full h-full rounded-md' />
                 </div>
@@ -29,6 +30,18 @@ export default function Event({ evendId, eventBanner, eventName, eventDate, even
                     <p className='sm font-semibold'>{eventGuest}</p>
                 </div>
             </div>
+
+            <div className='flex justify-between items-center font-medium mb-4'>
+                {
+                    (getDateStatus(eventDate) === `Upcoming`) && <p className='px-4 py-1 rounded-full bg-pink-300 w-fit text-xs font-semibold'>Upcoming</p>
+                }
+                {
+                    (getDateStatus(eventDate) === `Completed`) && <p className='px-4 py-1 rounded-full bg-green-300 w-fit text-xs font-semibold'>Completed</p>
+                }
+                {
+                    (getDateStatus(eventDate) === `Today`) && <p className='px-4 py-1 rounded-full bg-blue-300 w-fit text-xs font-semibold'>Today</p>
+                }
+            </div>            
 
             <div className='space-y-3 text-zinc-700 px-2 mb-5'>
                 <p className='text-xl font-bold'>{eventName}</p>
