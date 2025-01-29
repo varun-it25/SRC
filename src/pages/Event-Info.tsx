@@ -38,7 +38,7 @@ const EventInfo = () => {
             <div className='w-full h-fit p-6'>
 
             <div className='w-full h-32 sm:h-40 mb-5 sm:mb-6 rounded-lg sm:rounded-xl'>
-                <img src={res?.event_banner} className='w-full h-full object-cover rounded-lg' />
+                <img src={res?.event_banner} className='w-full h-full object-cover rounded-lg sm:rounded-xl' />
             </div>
             <div className='border-zinc-400 border w-full rounded-lg p-6 sm:p-10'>
                 <div className='flex justify-between items-center font-medium mb-4'>

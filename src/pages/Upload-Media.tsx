@@ -20,6 +20,7 @@ const UploadMedia = () => {
         onDrop: (acceptedFiles: File[]) => { if (acceptedFiles[0]) setFile(acceptedFiles[0]) },
         maxSize: MAX_FILE_SIZE,
         onDropRejected: () => toast.error("File is too large. Maximum size is 100MB."),
+        accept: "image/*,video/*"
     })
 
     const handleUpload = async () => {
@@ -37,8 +38,8 @@ const UploadMedia = () => {
               headers: { "Content-Type": "multipart/form-data" },
               onUploadProgress: (progressEvent) => {
                 const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-                  setProgress(percent)
-                }
+                setProgress(percent)
+              }
             })
             setProgress(100)
             setUploaded(true)
