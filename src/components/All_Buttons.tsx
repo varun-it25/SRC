@@ -1,18 +1,34 @@
+import { backendUrl } from '@/data/links'
+import { countUpcomingEvents } from '@/lib/upcomingEvents'
+import axios from 'axios'
 import { CalendarClock, CalendarRange, Plus, UploadCloudIcon } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const All_Buttons = () => {
+  const[totalEvents, setTotalEvents] = useState(0)
+  const[upcomingEvents, setUpcomingEvents] = useState(0)
+
+  useEffect(()=>{
+    async function fetchEventsData(){
+        const res = await axios.get(`${backendUrl}/events`)
+        setTotalEvents(res.data.length)
+        setUpcomingEvents(countUpcomingEvents(res.data))
+    }
+    fetchEventsData()
+  },[])
+    
   return (
     <div className='w-full h-full grid grid-rows-2 grid-cols-2 gap-6'>
         <div className='w-full p-6 h-full rounded-md bg-red-200 flex flex-col justify-start items-start cursor-pointer hover:bg-red-300'>
             <CalendarClock />
             <p className='font text-xl pt-3 flex'>Upcoming<span className='hidden sm:block ml-1'> Events</span></p>
-            <p className='font-bold text-2xl pt-[0.1rem]'>2</p>
+            <p className='font-bold text-2xl pt-[0.1rem]'>{upcomingEvents}</p>
         </div>
         <div className='w-full p-6 h-full rounded-md bg-teal-200 flex flex-col justify-start items-start cursor-pointer hover:bg-teal-300'>
             <CalendarRange />
             <p className='font text-xl pt-3 flex'>Total <span className='hidden sm:block ml-1'>Events</span></p>
-            <p className='font-bold text-2xl pt-2 sm:pt-[0.1rem]'>23</p>
+            <p className='font-bold text-2xl pt-2 sm:pt-[0.1rem]'>{totalEvents}</p>
         </div>
         <Link to={`/upload-media`}  className='w-full h-full text-white space-x-2 sm:space-x-3 rounded-md bg-blue-800 justify-center flex items-center p-6 cursor-pointer hover:bg-blue-700'>
             <UploadCloudIcon />

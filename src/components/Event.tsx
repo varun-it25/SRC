@@ -31,17 +31,17 @@ export default function Event({ evendId, eventBanner, eventName, eventDate, even
                 </div>
             </div>
 
-            <div className='flex justify-between items-center font-medium mb-4'>
+            <div className='flex space-x-2 text-white font-medium justify-start items-center mb-2'>
                 {
-                    (getDateStatus(eventDate) === `Upcoming`) && <p className='px-4 py-1 rounded-full bg-pink-300 w-fit text-xs font-semibold'>Upcoming</p>
+                  (getDateStatus(eventDate) === `Upcoming`) && <p className='px-3 sm:px-4 py-1 rounded-full bg-red-400 w-fit text-[0.7rem]'>Upcoming</p>
                 }
                 {
-                    (getDateStatus(eventDate) === `Completed`) && <p className='px-4 py-1 rounded-full bg-green-300 w-fit text-xs font-semibold'>Completed</p>
+                  (getDateStatus(eventDate) === `Completed`) && <p className='px-3 sm:px-4 py-1 rounded-full bg-green-400 w-fit text-[0.7rem]'>Completed</p>
                 }
                 {
-                    (getDateStatus(eventDate) === `Today`) && <p className='px-4 py-1 rounded-full bg-blue-300 w-fit text-xs font-semibold'>Today</p>
+                  (getDateStatus(eventDate) === `Today`) && <p className='px-3 sm:px-4 py-1 rounded-full bg-blue-400 w-fit text-[0.7rem]'>Today</p>
                 }
-            </div>            
+            </div>         
 
             <div className='space-y-3 text-zinc-700 px-2 mb-5'>
                 <p className='text-xl font-bold'>{eventName}</p>

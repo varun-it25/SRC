@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Calendar, ImagesIcon, LayoutDashboard, LogOut, Plus, Settings, UploadCloud, UserPlus2, Users } from "lucide-react";
+import { Calendar, ImagesIcon, LayoutDashboard, LogOut, LucideAreaChart, Plus, Settings, UploadCloud, UserPlus2, Users } from "lucide-react";
 
 interface navData{
   to: string,
@@ -12,7 +12,7 @@ const NavItem = ({ to, icon, label, activePath }: navData) => {
   const isActive = activePath === to;
 
   return (
-    <Link to={to} className={`w-full rounded py-1 px-2 flex space-x-3 items-center cursor-pointer transition-colors duration-300 ${isActive ? 'bg-zinc-900 text-white' : 'hover:bg-zinc-100 text-zinc-700'} ${isActive ? 'font-semibold' : 'font-medium'}`}>
+    <Link to={to} className={`w-full rounded py-1 px-2 flex space-x-3 items-center cursor-pointer text-sm transition-colors duration-300 ${isActive ? 'bg-zinc-900 text-white' : 'hover:bg-zinc-100 text-zinc-700'} ${isActive ? 'font-semibold' : 'font-medium'}`}>
       <div className="flex justify-center items-center p-1">{icon}</div>
       <p>{label}</p>
     </Link>
@@ -23,7 +23,7 @@ const Sidebar = () => {
   const location = useLocation();
   return (
     <div className="Left flex flex-col py-2 h-full border-r text-black">
-      <div className="w-full space-y-[0.67rem] mt-0 text-sm p-4 font-semibold text-zinc-700">
+      <div className="w-full space-y-2 mt-0 text-sm p-4 font-semibold text-zinc-700 overflow-auto">
 
         {/* Sidebar Navigation Items */}
         <NavItem to="/" label="Dashboard" icon={<LayoutDashboard size={20} />} activePath={location.pathname} />
@@ -34,6 +34,7 @@ const Sidebar = () => {
         <NavItem to="/members" label="Members" icon={<Users size={20} />} activePath={location.pathname} />
         <NavItem to="/add-member" label="Add Member" icon={<UserPlus2 size={20} />} activePath={location.pathname} />
         <NavItem to="/settings" label="Settings" icon={<Settings size={20} />} activePath={location.pathname} />
+        <NavItem to="/feedbacks" label="Feedbacks" icon={<LucideAreaChart size={20} />} activePath={location.pathname} />
 
       </div>
 

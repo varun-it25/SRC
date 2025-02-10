@@ -1,6 +1,6 @@
 import '@/App.css'
 import { Calendar, Clock, MapPin } from 'lucide-react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Container from '@/components/Right'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -51,6 +51,7 @@ const EventInfo = () => {
                     {
                       (getDateStatus(res?.event_date) === `Today`) && <p className='px-4 py-1 rounded-full bg-blue-300 w-fit text-sm'>Today</p>
                     }
+                    <Link to={`/`} className='text-blue-600 font-medium hover:underline'>Registration URL</Link>
                 </div>
                 <p className='text-3xl font-semibold mb-6 sm:mb-5'>{res?.event_name}</p>
                 <p className='text-zinc-600 mb-4'>{res?.event_description}</p>
@@ -72,11 +73,7 @@ const EventInfo = () => {
                         <div className='flex-col sm:flex-row flex items-center justify-between space-y-6 sm:space-y-0 space-x-0 sm:space-x-6'>
                            <p className='font-medium flex text-zinc-600 items-center space-x-3'><Clock size={22} /><span>{`${res?.event_start_time} to ${res?.event_end_time}`}</span></p>
                         </div>
-{/* 
-                        <div className='flex space-x-6'>
-                          <Link to={`/`} className='text-blue-600 font-medium hover:underline'>Participation</Link>
-                          <Link to={`/`} className='text-blue-600 font-medium hover:underline'>Registration</Link>
-                        </div> */}
+
                     </div>
 
                 </div>
