@@ -1,5 +1,5 @@
 import '@/App.css'
-import { Calendar, Clock, MapPin, Users } from 'lucide-react';
+import { Calendar, Clock, Delete, Edit, MapPin, Users } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import Container from '@/components/Right'
 import { useEffect, useState } from 'react';
@@ -50,16 +50,9 @@ const EventInfo = () => {
                 <img src={res?.event_banner} className='w-full h-full object-cover' />
             </div>
             <div className='w-full bg-white border-t grid grid-cols-3 space-y-1 px-6 sm:px-16 rounded-t-[3rem] relative top-[-3rem]'>
-                <div className='flex space-x-2 text-white font-medium justify-start items-center'>
-                    {
-                      (getDateStatus(res?.event_date) === `Upcoming`) && <p className='px-3 sm:px-6 py-1 rounded-full bg-red-400 w-fit text-sm'>Upcoming</p>
-                    }
-                    {
-                      (getDateStatus(res?.event_date) === `Completed`) && <p className='px-3 sm:px-6 py-1 rounded-full bg-green-400 w-fit text-sm'>Completed</p>
-                    }
-                    {
-                      (getDateStatus(res?.event_date) === `Today`) && <p className='px-3 sm:px-6 py-1 rounded-full bg-blue-400 w-fit text-sm'>Today</p>
-                    }
+                <div className='flex space-x-3 text-white font-medium justify-start items-center'>
+                    <Link to={`/update-event/${id}`}><button className='px-2 sm:px-5 py-2 rounded-full bg-blue-400 w-fit text-sm flex justify-center items-center space-x-2'><Edit size={19} /><span className='hidden sm:block'>Edit</span></button></Link>
+                    <Link to={`/update-event/${id}`}><button className='px-3 sm:px-4 py-2 rounded-full bg-red-400 w-fit text-sm flex justify-center items-center space-x-2'><Delete size={19} /><span className='hidden sm:block'>Delete</span></button></Link>
                 </div>
 
                 <div className='flex w-full flex-col justify-center items-center'>
@@ -94,7 +87,6 @@ const EventInfo = () => {
                       <p className='font-medium flex text-zinc-600 items-center text-sm space-x-2'><Clock size={18} className='text-yellow-400'  /><span>{`${res?.event_start_time} to ${res?.event_end_time}`}</span></p>
                     </div>
                 </div>
-                <Link to={`/update-event/${id}`}><Button>Update</Button></Link>
             </div>
         </div>
     </Container>
