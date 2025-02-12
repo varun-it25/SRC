@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { BellDot, Calendar, ChevronRight, ImagesIcon, LayoutDashboard, LogOut, LogOutIcon, MenuIcon, Moon, Plus, Settings, Sun, UploadCloud, UserPlus2 } from "lucide-react";
+import { BellDot, Calendar, ChevronRight, ImagesIcon, LayoutDashboard, LogOut, LogOutIcon, MenuIcon, Moon, Plus, Settings, Sun, UploadCloud, UserPlus2, House } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
+
 import { Button } from "@/components/ui/button";
 import { Drawer } from '@mui/material';
 import { useLocation, Link } from 'react-router-dom';
@@ -16,13 +16,14 @@ const Navbar = () => {
     const location = useLocation();
 
   const menuItems = [
+    { name: 'Home', icon: <House size={20}/>, path: 'https://varun-src-home.vercel.app/'},
     { name: 'Dashboard', icon: <LayoutDashboard size={20} />, path: '/dashboard' },
     { name: 'Events', icon: <Calendar size={20} />, path: '/events' },
     { name: 'Create Event', icon: <Plus size={20} />, path: '/create-event' },
     { name: 'Upload Media', icon: <UploadCloud size={20} />, path: '/upload-media' },
     { name: 'Gallery', icon: <ImagesIcon size={20} />, path: '/gallery' },
     { name: 'Add Member', icon: <UserPlus2 size={20} />, path: '/add-member' },
-    { name: 'Settings', icon: <Settings size={20} />, path: '/settings' },
+    { name: 'Settings', icon: <Settings size={20} />, path: '/settings' }
   ];
 
   const isActive = (path: string) => location.pathname === path ? 'bg-zinc-100 text-zinc-600' : 'text-zinc-500';
@@ -41,9 +42,14 @@ const Navbar = () => {
                 </div>
             </Link>
 
-            <Input placeholder="Search something..." className="ProfileIcon" />
+            
 
             <div className="justify-center ProfileIcon items-center space-x-6 py-1">
+
+                {/* HOME BUTTON */}
+                <a href="https://varun-src-home.vercel.app/">
+                <House className="cursor-pointer text-zinc-400 hover:text-zinc-600"size={22}/>
+                </a>
 
                 {/* Notifications */}
                 <DropdownMenu>

@@ -1,23 +1,7 @@
-import { backendUrl } from '@/data/links'
-import { countUpcomingEvents } from '@/lib/upcomingEvents'
-import axios from 'axios'
 import { CalendarClock, CalendarRange, Plus, UploadCloudIcon } from 'lucide-react'
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const All_Buttons = () => {
-  const[totalEvents, setTotalEvents] = useState(0)
-  const[upcomingEvents, setUpcomingEvents] = useState(0)
-
-  useEffect(()=>{
-    async function fetchEventsData(){
-        const res = await axios.get(`${backendUrl}/events`)
-        setTotalEvents(res.data.length)
-        setUpcomingEvents(countUpcomingEvents(res.data))
-    }
-    fetchEventsData()
-  },[])
-    
+const All_Buttons = ({upcomingEvents, totalEvents}) => {
   return (
     <div className='w-full h-full grid grid-rows-2 grid-cols-2 gap-6'>
         <div className='w-full p-6 h-full rounded-md bg-red-200 flex flex-col justify-start items-start cursor-pointer hover:bg-red-300'>
