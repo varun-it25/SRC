@@ -10,10 +10,11 @@ import Events from "./pages/Events";
 import Members from "./pages/Members";
 import Settings from "./pages/Settings";
 import Add_Member from "./pages/Add-Member";
-import EventInfo from "./pages/Event-Info";
+// import EventInfo from "./pages/Event-Info";
 import Not_found from "./pages/Not-found";
-import NewEventInfo from "./pages/NewEventInfo";
+import EventInfo from "./pages/Event-Info";
 import Feedbacks from "./pages/Feedbacks";
+import UpdateEvent from "./pages/Update-Event";
 
 const App = () => {
   return (
@@ -25,8 +26,9 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/create-event" element={<CreateEvent />} />
+            <Route path="/update-event/:id" element={<UpdateEvent />} />
             <Route path="/events" element={<Events />} />
-            <Route path="/event/:id" element={<NewEventInfo />} />
+            <Route path="/event/:id" element={<EventInfo />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/members" element={<Members />} />
             <Route path="/add-member" element={<Add_Member />} />

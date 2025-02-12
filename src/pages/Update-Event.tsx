@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '@/components/Right'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -7,12 +7,13 @@ import { Loader2, UploadCloud, User } from 'lucide-react'
 import axios from 'axios'
 import { backendUrl } from '@/data/links'
 import { uploadFile } from '@/utis/uploadFile'
+import { useParams } from 'react-router-dom'
 
 function Loading(){
   return(
     <div className="flex justify-center items-center h-full space-x-4">
       <Loader2 size={40} className="animate-spin" />
-      <p>Creating Event...</p>
+      <p>Updating Event...</p>
     </div>
   )
 }
@@ -20,7 +21,7 @@ function Loading(){
 function Success(){
   return (
     <div className="w-full bg-green-200 text-center p-4 rounded-lg">
-      <p className="font-semibold text-xl">Event Created Successfully!</p>
+      <p className="font-semibold text-xl">Event Updated Successfully!</p>
     </div>
   )
 }
@@ -42,7 +43,7 @@ function Title({step, name}: {step:number, name: string}){
   )
 }
 
-const CreateEvent = () => {
+const UpdateEvent = () => {
   const [eventName, setEventName] = useState('')
   const [venue, setVenue] = useState('')
   const [description, setDescription] = useState('')
@@ -60,7 +61,27 @@ const CreateEvent = () => {
   const [status, setStatus] = useState<'success' | 'error' | null>(null)
   const [errorMessage, setErrorMessage] = useState('')
   
-  const isFormValid = eventName && venue && description && eventDate && eventStartTime && eventEndTime && guestName && guestEmail && guestPhone && banner
+  const [eventData, setEventData] = useState(null)
+
+  const {id} = useParams();
+  
+  useEffect(()=>{
+    async function callData(){        
+        const res = (await axios.get(`${backendUrl}/event/${id}`)).data
+        setEventData(res)
+        setEventName(res.event_name)
+        setVenue(res.event_venue)
+        setDescription(res.event_description)
+        setEventDate(res.event_date)
+        setEventStartTime(res.event_start_time)
+        setEventEndTime(res.event_end_time)
+        setGuestName(res.guest_name)
+        setGuestEmail(res.guest_email)
+        setGuestPhone(res.guest_mobile_no)
+        console.log(res)
+    }
+    callData();
+  },[])
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, setter: React.Dispatch<React.SetStateAction<File | null>>) => {
     if (e.target.files) {
@@ -89,12 +110,12 @@ const CreateEvent = () => {
   return (
     <Container>
       <div className="w-full flex-col flex h-fit p-6 space-y-6">                
-        <div className="w-full"><p className="font-bold text-2xl">Create New Event</p></div>
+        <div className="w-full"><p className="font-bold text-2xl">Update Event</p></div>
 
         {
           loading          
           ? <Loading />
-
+          
           : status === 'success'          
             ? <Success />
 
@@ -106,41 +127,40 @@ const CreateEvent = () => {
 
                     <div className="p-1 sm:p-3 w-full space-y-5">
                       {
-                        banner
+                        eventData && !banner
                           ? <label htmlFor="banner" className="w-full h-28 sm:h-52 rounded-xl flex justify-center text-zinc-600 items-center border-zinc-300 space-x-2 text-xl sm:text-2xl font-bold border-2 border-dashed bg-zinc-100 cursor-pointer hover:bg-zinc-200">
-                              <img src={URL.createObjectURL(banner)} className="h-full w-full rounded-xl object-cover" />
-                          </label>
+                                <img src={eventData.event_banner} className="h-full w-full rounded-xl object-cover" />
+                            </label>
 
-                          : <label htmlFor="banner" className="w-full h-28 sm:h-52 rounded-xl flex justify-center text-zinc-600 items-center border-zinc-300 space-x-2 text-xl sm:text-2xl font-bold border-2 border-dashed bg-zinc-100 cursor-pointer hover:bg-zinc-200">
-                              <UploadCloud size={30} /><p>Banner</p>
-                          </label>
-                      }
+                          : banner
+                            ? <label htmlFor="banner" className="w-full h-28 sm:h-52 rounded-xl flex justify-center text-zinc-600 items-center border-zinc-300 space-x-2 text-xl sm:text-2xl font-bold border-2 border-dashed bg-zinc-100 cursor-pointer hover:bg-zinc-200">
+                                <img src={URL.createObjectURL(banner)} className="h-full w-full rounded-xl object-cover" />
+                            </label>
+                            : <label htmlFor="banner" className="w-full h-28 sm:h-52 rounded-xl flex justify-center text-zinc-600 items-center border-zinc-300 space-x-2 text-xl sm:text-2xl font-bold border-2 border-dashed bg-zinc-100 cursor-pointer hover:bg-zinc-200">
+                                <UploadCloud size={30} /><p>Banner</p>
+                            </label>
+                       }
                       <input id="banner" type="file" className="hidden" onChange={(e) => handleFileChange(e, setBanner)} />
-                      
 
                       <div className="space-y-1">
                         <p className="font-semibold text-xs">Name</p>
                         <Input value={eventName} onChange={(e) => setEventName(e.target.value)} placeholder="Jigyasa" />
                       </div>
 
-
                       <div className="space-y-1">
-                        <p className="font-semibold text-xs">Venue</p>
-                        <Input value={venue} onChange={(e) => setVenue(e.target.value)} placeholder="D-Block, Auditorium, JECRC" />
+                       <p className="font-semibold text-xs">Venue</p>
+                       <Input value={venue} onChange={(e) => setVenue(e.target.value)} placeholder="D-Block, Auditorium, JECRC" />
                       </div>
-
 
                       <div className="space-y-1">
                         <p className="font-semibold text-xs">Description</p>
                         <Textarea rows={5} value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Write something here..." />
                       </div>
 
-
                       <div className="space-y-1">
                         <p className="font-semibold text-xs">Date</p>
                         <Input type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} />
                       </div>
-
 
                       <div className="space-y-1 w-full">
                         <p className="font-semibold text-xs">Time</p>
@@ -157,56 +177,64 @@ const CreateEvent = () => {
 
 
                   <div className="w-full bg-white border rounded-lg p-6">
+
                     <Title name='Guest Information' step={2} />
 
                     <div className="p-3 w-full space-y-5">
                       <div className="w-full flex space-x-4 items-center font-semibold text-lg">
                         {
-                          guestImage
+                          eventData && !guestImage
                             ? <div className="w-16 ml-[-0.2rem] h-16">
-                                <img className="w-full border h-full rounded-full object-cover" src={URL.createObjectURL(guestImage)} />
+                                <img className="w-full border h-full rounded-full object-cover" src={eventData.guest_image} />
                             </div>
+
+                            : guestImage
+                              ? <div className="w-16 ml-[-0.2rem] h-16">
+                                  <img className="w-full border h-full rounded-full object-cover" src={URL.createObjectURL(guestImage)} />
+                              </div>
                             : <div className="w-fit ml-[-0.5rem] bg-zinc-100 rounded-full p-3 text-zinc-500 cursor-pointer">
                                 <User size={40} />
                             </div>
                         }
 
                         {
-                          guestImage
+                          eventData && !guestImage
                             ? <div className="flex space-x-3">
                                 <label htmlFor="guestImage" className="hover:underline text-yellow-500 cursor-pointer">Update</label>
                                 <p className="hover:underline text-red-500 cursor-pointer" onClick={() => setGuestImage(null)}>Remove</p>
                             </div>
-                            : <label htmlFor="guestImage" className="hover:underline cursor-pointer">Upload</label>
+
+                            : guestImage
+                              ? <div className="flex space-x-3">
+                                  <label htmlFor="guestImage" className="hover:underline text-yellow-500 cursor-pointer">Update</label>
+                                  <p className="hover:underline text-red-500 cursor-pointer" onClick={() => setGuestImage(null)}>Remove</p>
+                              </div>
+                              : <label htmlFor="guestImage" className="hover:underline cursor-pointer">Upload</label>
                         }
                       </div>
                       <input id="guestImage" type="file" className="hidden" onChange={(e) => handleFileChange(e, setGuestImage)} />
-
 
                       <div className="space-y-1">
                         <p className="font-semibold text-xs">Name</p>
                         <Input value={guestName} onChange={(e) => setGuestName(e.target.value)} placeholder="Sister Shivani" />
                       </div>
 
-
                       <div className="space-y-1">
                         <p className="font-semibold text-xs">Email ID</p>
                         <Input type="email" value={guestEmail} onChange={(e) => setGuestEmail(e.target.value)} placeholder="shivani@gmail.com" />
                       </div>
-
 
                       <div className="space-y-1">
                         <p className="font-semibold text-xs">Mobile No.</p>
                         <Input type="tel" value={guestPhone} onChange={(e) => setGuestPhone(e.target.value)} placeholder="+91 98765-43210" />
                       </div>
 
-
                     </div>
                   </div>
 
-                  <Button className="flex space-x-2" onClick={handleSubmit} disabled={!isFormValid}>
+                  <Button className="flex space-x-2" onClick={handleSubmit}>
                     <UploadCloud size={30} />
-                    <p>Publish</p>
+                    <p>Update</p>
                   </Button>
                 </>
         }
@@ -215,4 +243,4 @@ const CreateEvent = () => {
   )
 }
 
-export default CreateEvent
+export default UpdateEvent

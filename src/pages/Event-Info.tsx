@@ -1,10 +1,12 @@
 import '@/App.css'
-import { Calendar, Clock, MapPin } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import Container from '@/components/Right'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { getDateStatus } from '@/lib/getDateStatus';
+import { backendUrl } from '@/data/links';
+import { Button } from '@mui/material';
 
 interface resData {
     _id: string,
@@ -24,61 +26,77 @@ interface resData {
 const EventInfo = () => {
   const { id } = useParams()
   const [res, setRes] = useState<resData>()
+  const [feedbacks, setFeedbacks] = useState<number>(0)
+
+  async function fetchEventData(){
+      const response = await axios.get(`${backendUrl}/event/${id}`)
+      setRes(response.data)
+  }
+
+  async function fetchFeedbacks(){
+      const response = await axios.get(`${backendUrl}/feedbacks/event/${id}`)
+      setFeedbacks(response.data.length)
+  }
 
   useEffect(()=>{
-    async function fetchData(){
-        const response = await axios.get(`https://src-server.onrender.com/event/${id}`)
-        setRes(response.data)
-    }
-    fetchData()
-  })
+    fetchEventData()
+    fetchFeedbacks()
+  },[])
 
   return (
     <Container>
-            <div className='w-full h-fit p-6'>
-
-            <div className='w-full h-32 sm:h-40 mb-5 sm:mb-6 rounded-lg sm:rounded-xl'>
-                <img src={res?.event_banner} className='w-full h-full object-cover rounded-lg sm:rounded-xl' />
+        <div className='w-full h-fit'>
+            <div className='border w-full h-40 sm:h-56 z-[0]'>
+                <img src={res?.event_banner} className='w-full h-full object-cover' />
             </div>
-            <div className='border-zinc-400 border w-full rounded-lg p-6 sm:p-10'>
-                <div className='flex justify-between items-center font-medium mb-4'>
+            <div className='w-full bg-white border-t grid grid-cols-3 space-y-1 px-6 sm:px-16 rounded-t-[3rem] relative top-[-3rem]'>
+                <div className='flex space-x-2 text-white font-medium justify-start items-center'>
                     {
-                      (getDateStatus(res?.event_date) === `Upcoming`) && <p className='px-4 py-1 rounded-full bg-pink-300 w-fit text-sm'>Upcoming</p>
+                      (getDateStatus(res?.event_date) === `Upcoming`) && <p className='px-3 sm:px-6 py-1 rounded-full bg-red-400 w-fit text-sm'>Upcoming</p>
                     }
                     {
-                      (getDateStatus(res?.event_date) === `Completed`) && <p className='px-4 py-1 rounded-full bg-green-300 w-fit text-sm'>Completed</p>
+                      (getDateStatus(res?.event_date) === `Completed`) && <p className='px-3 sm:px-6 py-1 rounded-full bg-green-400 w-fit text-sm'>Completed</p>
                     }
                     {
-                      (getDateStatus(res?.event_date) === `Today`) && <p className='px-4 py-1 rounded-full bg-blue-300 w-fit text-sm'>Today</p>
+                      (getDateStatus(res?.event_date) === `Today`) && <p className='px-3 sm:px-6 py-1 rounded-full bg-blue-400 w-fit text-sm'>Today</p>
                     }
-                    <Link to={`/`} className='text-blue-600 font-medium hover:underline'>Registration URL</Link>
                 </div>
-                <p className='text-3xl font-semibold mb-6 sm:mb-5'>{res?.event_name}</p>
-                <p className='text-zinc-600 mb-4'>{res?.event_description}</p>
 
-                <div className='p-2 sm:p-6 space-y-7'>
-                    <div className='font-medium flex text-zinc-800 items-center space-x-4'>
-                        <img src={res?.guest_image} className='aspect-square w-11 rounded-full' />
-                        <p className='text-xl font-medium'>{res?.guest_name}</p>
+                <div className='flex w-full flex-col justify-center items-center'>
+                    <div className='w-20 relative top-[-1.5rem] bg-white rounded-full'>
+                        <img className='aspect-square rounded-full object-cover border border-zinc-300' src={res?.guest_image} />
                     </div>
-                    
-                    <div className='px-1 flex flex-col items-start space-y-6'>
-                        <div className='flex-col sm:flex-row flex items-center justify-between space-y-6 sm:space-y-0 space-x-0 sm:space-x-6'>
-                            <p className='font-medium flex text-zinc-600 items-center space-x-3'><MapPin size={24} /><span>{res?.event_venue}</span></p>
-                        </div>
-                        <div className='flex-col sm:flex-row flex items-center justify-between space-y-6 sm:space-y-0 space-x-0 sm:space-x-6'>
-                           <p className='font-medium flex text-zinc-600 items-center space-x-3'><Calendar size={22} /><span>{res?.event_date}</span></p>
-                        </div>
+                    <p className='text-lg font-medium relative top-[-0.8rem]'>{res?.guest_name}</p>
+                </div>
 
-                        <div className='flex-col sm:flex-row flex items-center justify-between space-y-6 sm:space-y-0 space-x-0 sm:space-x-6'>
-                           <p className='font-medium flex text-zinc-600 items-center space-x-3'><Clock size={22} /><span>{`${res?.event_start_time} to ${res?.event_end_time}`}</span></p>
-                        </div>
-
-                    </div>
-
+                <div className='flex space-x-2 justify-end items-center font-bold text-zinc-500'>
+                    <Users />
+                    <p>{feedbacks}</p>
                 </div>
             </div>
-      </div>
+
+
+            <div className='px-6 sm:px-16 pb-12 mt-[-1.5rem] space-y-5 flex flex-col justify-center items-start'>
+                <p className='text-3xl font-bold'>{res?.event_name}</p>
+
+                <p className='text'>{res?.event_description}</p>
+
+                <div className='pt-3 sm:pt-1 flex flex-col sm:flex-row items-start space-y-5 sm:space-y-0 space-x-0 sm:space-x-10'>
+                    <div className='flex-col sm:flex-row flex items-center text-sm justify-between space-y-6 sm:space-y-0 space-x-0 sm:space-x-6'>
+                       <p className='font-medium flex text-zinc-600 items-center space-x-2'><MapPin size={20} className='text-red-300' /><span>{res?.event_venue}</span></p>
+                    </div>
+
+                    <div className='flex-col sm:flex-row flex items-center justify-between space-y-6 sm:space-y-0 space-x-0 sm:space-x-6'>
+                        <p className='font-medium flex text-zinc-600 items-center text-sm space-x-2'><Calendar size={18} className='text-purple-300'  /><span>{res?.event_date}</span></p>
+                    </div>
+
+                    <div className='flex-col sm:flex-row flex items-center justify-between space-y-6 sm:space-y-0 space-x-0 sm:space-x-6'>
+                      <p className='font-medium flex text-zinc-600 items-center text-sm space-x-2'><Clock size={18} className='text-yellow-400'  /><span>{`${res?.event_start_time} to ${res?.event_end_time}`}</span></p>
+                    </div>
+                </div>
+                <Link to={`/update-event/${id}`}><Button>Update</Button></Link>
+            </div>
+        </div>
     </Container>
   )
 }
