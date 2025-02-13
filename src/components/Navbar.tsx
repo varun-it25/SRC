@@ -49,7 +49,7 @@ const Navbar = () => {
 
                 {/* HOME BUTTON */}
                 <a href="https://varun-src-home.vercel.app/">
-                <House className="cursor-pointer text-zinc-400 hover:text-zinc-600"size={22}/>
+                  <House className="cursor-pointer text-zinc-400 hover:text-zinc-600"size={22}/>
                 </a>
 
                 {/* Notifications */}
@@ -106,9 +106,7 @@ const Navbar = () => {
 
             {/* Hamburger */}
             <div className="HamIcon">
-                <Button variant="outline" onClick={handleDrawerToggle}>
-                    <MenuIcon />
-                </Button>
+                <Button variant="outline" onClick={handleDrawerToggle}><MenuIcon /></Button>
             </div>
 
             {/* Drawer */}

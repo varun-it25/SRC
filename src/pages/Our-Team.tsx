@@ -11,11 +11,12 @@ const OurTeam = () => {
   const [members, setMembers]  = useState([])
 
   useEffect(()=>{
-    (async function(){
+    async function callMember(){
         const res = await axios.get(`${backendUrl}/members`)
         setMembers(res.data)
-    })()    
-  },[])
+    }
+    callMember()
+  },[members])
 
   return (
     <Container>
@@ -29,7 +30,7 @@ const OurTeam = () => {
             <div className='grid grid-cols-1 gap-6 sm:grid-cols-4'>
                 {
                     members.map(({_id, member_image, member_name, member_role, member_email, member_mobile_no}) => {
-                        return <Member key={_id} image={member_image} name={member_name} designation={member_role} email={member_email} phone={member_mobile_no} />
+                        return <Member key={_id} member_id={_id} image={member_image} name={member_name} designation={member_role} email={member_email} phone={member_mobile_no} />
                     })
                 }
             </div>

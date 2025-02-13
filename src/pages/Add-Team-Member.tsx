@@ -49,7 +49,6 @@ const Add_Team_Member = () => {
                 <div className="w-full bg-white border rounded-lg p-6 mb-4">
                     <div className="flex space-x-3 items-center mb-4">
                         <p className="py-1 bg-blue-200 px-4 font-semibold rounded-full">Member Information</p>
-                        {/* <p className="font-semibold text-lg">Member Information</p> */}
                     </div>
 
                     <div className="px-2 sm:px-3 py-3 w-full space-y-5">

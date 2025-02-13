@@ -91,7 +91,8 @@ const UpdateEvent = () => {
     const guest_image = await uploadFile(guestImage)
 
     try {
-      await axios.post(`${backendUrl}/create-event`, { event_banner,
+      await axios.patch(`${backendUrl}/events/update/${id}`, {
+        event_banner,
         guest_image,
         event_name: eventName,
         event_venue: venue,
