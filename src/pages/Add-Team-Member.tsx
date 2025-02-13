@@ -4,8 +4,11 @@ import React, { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Plus, User } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { uploadFile } from '@/utis/uploadFile'
+import axios from 'axios'
+import { backendUrl } from '@/data/links'
 
-const Add_Member = () => {
+const Add_Team_Member = () => {
     const [guestName, setGuestName] = useState('')
     const [role, setRole] = useState('Select a role')
     const [guestImage, setGuestImage] = useState<File | null>(null)
@@ -18,8 +21,20 @@ const Add_Member = () => {
         }
     }
 
-    const handleSubmit = () => {
-        console.log('Guest Info:', { guestName, guestEmail, guestPhone, role })        
+    const handleSubmit = async () => {
+        const member_image = await uploadFile(guestImage);
+        const data = {
+            member_image,
+            member_name: guestName,
+            member_role: role,
+            member_email: guestEmail,
+            member_mobile_no: guestPhone
+        }
+
+        try{
+            axios.post(`${backendUrl}/create-member`, data)
+        }
+        catch(err){ }
     }
 
     const isFormValid = guestName && guestEmail && guestPhone && role !== 'Select a role'
@@ -102,4 +117,4 @@ const Add_Member = () => {
     )
 }
 
-export default Add_Member
+export default Add_Team_Member

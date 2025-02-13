@@ -17,6 +17,7 @@ function Loading(){
   )
 }
 
+
 function Success(){
   return (
     <div className="w-full bg-green-200 text-center p-4 rounded-lg">
@@ -24,6 +25,7 @@ function Success(){
     </div>
   )
 }
+
 
 function Error({message}){
   return (
@@ -33,6 +35,7 @@ function Error({message}){
   )
 }
 
+
 function Title({step, name}: {step:number, name: string}){
   return (
     <div className="flex space-x-3 items-center mb-4">
@@ -41,6 +44,10 @@ function Title({step, name}: {step:number, name: string}){
     </div>
   )
 }
+
+
+
+
 
 const CreateEvent = () => {
   const [eventName, setEventName] = useState('')
@@ -154,6 +161,8 @@ const CreateEvent = () => {
                     </div>
                   </div>
 
+                  
+
 
 
                   <div className="w-full bg-white border rounded-lg p-6">
@@ -177,7 +186,7 @@ const CreateEvent = () => {
                                 <label htmlFor="guestImage" className="hover:underline text-yellow-500 cursor-pointer">Update</label>
                                 <p className="hover:underline text-red-500 cursor-pointer" onClick={() => setGuestImage(null)}>Remove</p>
                             </div>
-                            : <label htmlFor="guestImage" className="hover:underline cursor-pointer">Upload</label>
+                            : <label htmlFor="guestImage" className="hover:no-underline cursor-pointer underline">Upload</label>
                         }
                       </div>
                       <input id="guestImage" type="file" className="hidden" onChange={(e) => handleFileChange(e, setGuestImage)} />

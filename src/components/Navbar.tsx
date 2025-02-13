@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BellDot, Calendar, ChevronRight, ImagesIcon, LayoutDashboard, LogOut, LogOutIcon, MenuIcon, Moon, Plus, Settings, Sun, UploadCloud, UserPlus2, House } from "lucide-react";
+import { BellDot, Calendar, ChevronRight, ImagesIcon, LayoutDashboard, LogOut, LogOutIcon, MenuIcon, Moon, Plus, Settings, Sun, UploadCloud, UserPlus2, House, Users } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 import { Button } from "@/components/ui/button";
@@ -20,9 +20,10 @@ const Navbar = () => {
     { name: 'Dashboard', icon: <LayoutDashboard size={20} />, path: '/dashboard' },
     { name: 'Events', icon: <Calendar size={20} />, path: '/events' },
     { name: 'Create Event', icon: <Plus size={20} />, path: '/create-event' },
-    { name: 'Upload Media', icon: <UploadCloud size={20} />, path: '/upload-media' },
-    { name: 'Gallery', icon: <ImagesIcon size={20} />, path: '/gallery' },
-    { name: 'Add Member', icon: <UserPlus2 size={20} />, path: '/add-member' },
+    { name: 'Our Team', icon: <Users size={20} />, path: '/our-team' },
+    // { name: 'Upload Media', icon: <UploadCloud size={20} />, path: '/upload-media' },
+    // { name: 'Gallery', icon: <ImagesIcon size={20} />, path: '/gallery' },
+    // { name: 'Add Member', icon: <UserPlus2 size={20} />, path: '/add-member' },
     { name: 'Settings', icon: <Settings size={20} />, path: '/settings' }
   ];
 

@@ -20,7 +20,7 @@ export default function Event({ evendId, eventBanner, eventName, eventDate, even
     return(
         <div className='p-4 rounded-md border bg-white shadow-md'>
             <div className='w-full mb-4'>
-                <div className='w-full h-28 rounded-md'>
+                <div className='w-full h-28 rounded-md'>                    
                     <img src={eventBanner} className='object-cover w-full h-full rounded-md' />
                 </div>
                 <div className='w-full rounded-md h-28 bg-black relative flex space-x-2 mt-[-7rem] bg-opacity-20 p-2 text-white'>

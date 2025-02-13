@@ -7,14 +7,13 @@ import CreateEvent from "./pages/Create-Event";
 import Gallery from "./pages/Gallery";
 import UploadMedia from "./pages/Upload-Media";
 import Events from "./pages/Events";
-import Members from "./pages/Members";
 import Settings from "./pages/Settings";
-import Add_Member from "./pages/Add-Member";
-// import EventInfo from "./pages/Event-Info";
+import Add_Team_Member from "./pages/Add-Team-Member"
 import Not_found from "./pages/Not-found";
 import EventInfo from "./pages/Event-Info";
 import Feedbacks from "./pages/Feedbacks";
 import UpdateEvent from "./pages/Update-Event";
+import OurTeam from "./pages/Our-Team";
 
 const App = () => {
   return (
@@ -29,12 +28,12 @@ const App = () => {
             <Route path="/update-event/:id" element={<UpdateEvent />} />
             <Route path="/events" element={<Events />} />
             <Route path="/event/:id" element={<EventInfo />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/members" element={<Members />} />
-            <Route path="/add-member" element={<Add_Member />} />
+            {/* <Route path="/gallery" element={<Gallery />} /> */}
+            <Route path="/our-team" element={<OurTeam />} />
+            <Route path="/add-team-member" element={<Add_Team_Member />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/feedbacks" element={<Feedbacks />} />
-            <Route path="/upload-media" element={<UploadMedia />} />
+            {/* <Route path="/feedbacks" element={<Feedbacks />} /> */}
+            {/* <Route path="/upload-media" element={<UploadMedia />} /> */}
             <Route path="/*" element={<Not_found />} />
           </Routes>
         </div>

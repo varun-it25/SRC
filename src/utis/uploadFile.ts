@@ -1,3 +1,4 @@
+import { cloudinaryUrl } from "@/data/links";
 import axios from "axios"
 
 export const uploadFile = async (file: File | null): Promise<string> => {
@@ -8,7 +9,7 @@ export const uploadFile = async (file: File | null): Promise<string> => {
   data.append("cloud_name", "dimqol16x");
 
   try {
-    const res = await axios.post(`https://api.cloudinary.com/v1_1/dimqol16x/image/upload`, data);
+    const res = await axios.post(cloudinaryUrl, data);
     return res.data.secure_url;
   }
   
