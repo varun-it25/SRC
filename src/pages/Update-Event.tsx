@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Loader2, UploadCloud, User } from 'lucide-react'
 import axios from 'axios'
 import { backendUrl } from '@/data/links'
-import { uploadFile } from '@/utis/uploadFile'
+import { uploadFile } from '@/utils/uploadFile'
 import { useParams } from 'react-router-dom'
 
 const Loading = () => (

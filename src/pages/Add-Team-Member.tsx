@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Plus, User } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { uploadFile } from '@/utis/uploadFile'
+import { uploadFile } from '@/utils/uploadFile'
 import axios from 'axios'
 import { backendUrl } from '@/data/links'
 
