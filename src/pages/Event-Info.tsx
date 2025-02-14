@@ -66,7 +66,7 @@ const EventInfo = () => {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await axios.get(`${backendUrl}/feedbacks/event/${id}`);
+      const response = await axios.get(`${backendUrl}/feedbacks/feedbacks/most-recent`);
       setFeedbacks(response.data);
     } catch (error) {
       console.error("Error fetching feedbacks", error);
