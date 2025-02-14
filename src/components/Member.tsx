@@ -1,4 +1,4 @@
-import { Mail, Phone, Trash2 } from 'lucide-react'
+import { Mail, MessageCircle, MessageSquareMore, Phone, Trash2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import axios from 'axios';
@@ -24,6 +24,11 @@ const Member = ({member_id, name, designation, image, phone, email }: memberData
       console.log(`Error in delete ${member_id}.`)
 
     }
+  }
+
+  function watsApp(){
+    const url = `https://wa.me/${phone}?text=Hello1`
+    window.open(url, '_blank')
   }
 
   return (
@@ -56,8 +61,9 @@ const Member = ({member_id, name, designation, image, phone, email }: memberData
         <p className='font-bold text-xl mt-3 text-zinc-800'>{name}</p>
         <p className='text-zinc-400 text-sm font-semibold mt-1'>{designation}</p>
         <div className='flex space-x-5 justify-center items-center text-zinc-500 mt-4'>
-            <Link to={`tel:${phone}`}><Phone size={16} className='cursor-pointer' /></Link>
-            <Link to={`mailto:${email}`}><Mail size={16} className='cursor-pointer' /></Link>
+            <Link className='bg-zinc-100 hover:bg-zinc-200 hover:text-zinc-600 p-2 rounded-full' to={`tel:${phone}`}><Phone size={16} className='cursor-pointer' /></Link>
+            <Link className='bg-zinc-100 hover:bg-zinc-200 hover:text-zinc-600 p-2 rounded-full' to={`mailto:${email}`}><Mail size={16} className='cursor-pointer' /></Link>
+            <button className='bg-zinc-100 hover:bg-zinc-200 hover:text-zinc-600 p-2 rounded-full' onClick={watsApp}><MessageSquareMore size={17} className='cursor-pointer' /></button>
         </div>
     </div>
   )

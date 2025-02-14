@@ -24,7 +24,7 @@ const OurTeam = () => {
 
             <div className='w-full mb-7 flex justify-between items-center'>
                 <p className='font-bold text-2xl'>Our Team</p>
-                <Link to={`/add-team-member`}><Button className='bg-blue-600 hover:bg-blue-500 font-bold'><UserPlus2Icon />Add New Member</Button></Link>
+                <Link to={`/add-team-member`}><Button className='bg-blue-600 hover:bg-blue-500 font-bold flex'><UserPlus2Icon />Add New<p className="hidden sm:block ml-[-4px]">Members</p></Button></Link>
             </div>
 
             <div className='grid grid-cols-1 gap-6 sm:grid-cols-4'>
