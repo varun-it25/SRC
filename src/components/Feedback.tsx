@@ -55,7 +55,7 @@ const Feedback = () => {
 
             <div className="w-full space-y-6 sm:space-y-4">
                 <div className='w-full'>
-                    <p className='font-semibold text-center text-xl text-zinc-700 mt-2 sm:mt-0'>Students Feedback</p>
+                    <p className='font-semibold text-center text-xl text-zinc-700 mt-2 sm:mt-0'>Recent Feedback</p>
                 </div>
 
                 <div className='w-full flex flex-col justify-center items-center'>

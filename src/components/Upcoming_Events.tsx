@@ -1,16 +1,16 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { recentEvents } from "@/data/recentEvents"
 
-const Recent_Events = () => {
+const Upcoming_Events = () => {
   return (
         <div className="rounded-lg bg-white border p-6 shadow-xl">
             
             <div className='w-full mb-4'>
-                <p className='font-semibold text-xl text-zinc-700 mt-2 sm:mt-0'>Recent Events</p>
+                <p className='font-semibold text-xl text-zinc-700 mt-2 sm:mt-0'>Upcoming Events</p>
             </div>
 
             <Table>
-                <TableCaption>A list of your recent events.</TableCaption>
+                <TableCaption>A list of your upcoming events.</TableCaption>
                 <TableHeader>
                     <TableRow>
                         <TableHead className="w-[100px]">Event</TableHead>
@@ -36,4 +36,4 @@ const Recent_Events = () => {
   )
 }
 
-export default Recent_Events
+export default Upcoming_Events

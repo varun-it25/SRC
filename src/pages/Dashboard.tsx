@@ -1,6 +1,6 @@
 import Total_Events from "@/components/Total_Events";
 import Feedback from "../components/Feedback";
-import Recent_Events from "@/components/Recent_Events";
+import Upcoming_Events from "@/components/Upcoming_Events";
 import All_Buttons from "@/components/All_Buttons";
 import Container from "@/components/Right";
 import { backendUrl } from "@/data/links";
@@ -38,7 +38,7 @@ const Dashboard = () => {
 
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-6 pb-8">
           <Feedback />
-          <Recent_Events />
+          <Upcoming_Events />
         </div>
       </div>
     </Container>

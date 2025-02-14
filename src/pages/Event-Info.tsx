@@ -110,16 +110,14 @@ const EventInfo = () => {
             <div className="w-full bg-white border-t grid grid-cols-3 space-y-1 px-6 sm:px-16 rounded-t-[3rem] relative top-[-3rem]">
               <div className="flex space-x-3 text-white font-medium justify-start items-center">
                 <Link to={`/update-event/${id}`}>
-                  <button className="px-2 sm:px-5 py-2 rounded-full bg-blue-400 w-fit text-sm flex justify-center items-center space-x-2">
+                  <button className="p-2 aspect-square rounded-full bg-blue-400 w-fit text-sm flex justify-center items-center">
                     <Edit size={19} />
-                    <span className="hidden sm:block">Edit</span>
                   </button>
                 </Link>
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <button className="px-3 sm:px-4 py-2 rounded-full bg-red-400 w-fit text-sm flex justify-center items-center space-x-2">
-                      <Delete size={19} />
-                      <span className="hidden sm:block">Delete</span>
+                    <button className="p-2 rounded-full bg-red-400 w-fit aspect-square text-sm flex justify-center items-center">
+                      <Delete size={19} className="relative left-[-1px]" />
                     </button>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
@@ -143,7 +141,7 @@ const EventInfo = () => {
                 <div className="w-20 relative top-[-1.5rem] bg-white rounded-full">
                   <img className="aspect-square rounded-full object-cover border border-zinc-300" src={res?.guest_image} />
                 </div>
-                <p className="text-lg font-medium relative top-[-0.8rem]">{res?.guest_name}</p>
+                <p className="text-lg whitespace-nowrap font-medium relative top-[-0.8rem]">{res?.guest_name}</p>
               </div>
 
               <div className="flex space-x-2 justify-end items-center font-bold text-zinc-500">
