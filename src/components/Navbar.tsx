@@ -21,8 +21,8 @@ const Navbar = () => {
     { name: 'Events', icon: <Calendar size={20} />, path: '/events' },
     { name: 'Create Event', icon: <Plus size={20} />, path: '/create-event' },
     { name: 'Our Team', icon: <Users size={20} />, path: '/our-team' },
+    { name: 'Gallery', icon: <ImagesIcon size={20} />, path: '/gallery' },
     // { name: 'Upload Media', icon: <UploadCloud size={20} />, path: '/upload-media' },
-    // { name: 'Gallery', icon: <ImagesIcon size={20} />, path: '/gallery' },
     // { name: 'Add Member', icon: <UserPlus2 size={20} />, path: '/add-member' },
     { name: 'Settings', icon: <Settings size={20} />, path: '/settings' }
   ];

@@ -1,10 +1,7 @@
 // import Feedbacks from "./pages/Feedbacks";
-// import Gallery from "./pages/Gallery";
-// import UploadMedia from "./pages/Upload-Media";
-{/* <Route path="/gallery" element={<Gallery />} /> */}
-{/* <Route path="/upload-media" element={<UploadMedia />} /> */}
 {/* <Route path="/feedbacks" element={<Feedbacks />} /> */}
 
+import Gallery from "./pages/New-Gallery";
 import Navbar from "@/components/Navbar";
 import "./App.css";
 import Sidebar from "./components/Sidebar";
@@ -21,10 +18,11 @@ import OurTeam from "./pages/Our-Team";
 import useAuth from "./hooks/useAuth";
 import Loader from "./components/Loader";
 import Login from "./components/Login";
+import UploadMedia from "./pages/Upload-Media";
 
 const App = () => {
   const { session, process } = useAuth();
-
+  
   if (process) { return (<Loader />) }
   else if (!session) { return (<Login />) }
   
@@ -42,9 +40,11 @@ const App = () => {
             <Route path="/events" element={<Events />} />
             <Route path="/event/:id" element={<EventInfo />} />
             <Route path="/our-team" element={<OurTeam />} />
+             <Route path="/gallery" element={<Gallery />} />
             <Route path="/add-team-member" element={<Add_Team_Member />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/*" element={<Not_found />} />
+            <Route path="/upload-media" element={<UploadMedia />} />
           </Routes>
         </div>
       </BrowserRouter>

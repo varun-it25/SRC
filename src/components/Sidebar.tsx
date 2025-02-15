@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Calendar, LayoutDashboard, LogOut, Plus, Settings, Users } from "lucide-react";
+import { Calendar, ImagesIcon, LayoutDashboard, LogOut, Plus, Settings, Users } from "lucide-react";
 import useAuth from "@/hooks/useAuth.ts";
 
 interface navData {
@@ -38,6 +38,7 @@ const Sidebar = () => {
         <NavItem to="/create-event" label="Create Event" icon={<Plus size={20} />} activePath={location.pathname} />
         <NavItem to="/our-team" label="Our Team" icon={<Users size={20} />} activePath={location.pathname} />
         <NavItem to="/settings" label="Settings" icon={<Settings size={20} />} activePath={location.pathname} />
+        <NavItem to="/Gallery" label="Settings" icon={<ImagesIcon size={20} />} activePath={location.pathname} />
       </div>
 
       <div className='flex-1 w-full flex items-end text-sm p-4 text-zinc-600 font-bold'>
