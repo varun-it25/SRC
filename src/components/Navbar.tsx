@@ -22,9 +22,9 @@ const Navbar = () => {
     { name: 'Create Event', icon: <Plus size={20} />, path: '/create-event' },
     { name: 'Our Team', icon: <Users size={20} />, path: '/our-team' },
     { name: 'Gallery', icon: <ImagesIcon size={20} />, path: '/gallery' },
+    { name: 'Settings', icon: <Settings size={20} />, path: '/settings' }
     // { name: 'Upload Media', icon: <UploadCloud size={20} />, path: '/upload-media' },
     // { name: 'Add Member', icon: <UserPlus2 size={20} />, path: '/add-member' },
-    { name: 'Settings', icon: <Settings size={20} />, path: '/settings' }
   ];
 
   const isActive = (path: string) => location.pathname === path ? 'bg-zinc-100 text-zinc-600' : 'text-zinc-500';

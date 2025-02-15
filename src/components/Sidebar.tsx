@@ -36,9 +36,9 @@ const Sidebar = () => {
         <NavItem to="/" label="Dashboard" icon={<LayoutDashboard size={20} />} activePath={location.pathname} />
         <NavItem to="/events" label="Events" icon={<Calendar size={20} />} activePath={location.pathname} />
         <NavItem to="/create-event" label="Create Event" icon={<Plus size={20} />} activePath={location.pathname} />
+        <NavItem to="/gallery" label="Gallery" icon={<ImagesIcon size={20} />} activePath={location.pathname} />
         <NavItem to="/our-team" label="Our Team" icon={<Users size={20} />} activePath={location.pathname} />
         <NavItem to="/settings" label="Settings" icon={<Settings size={20} />} activePath={location.pathname} />
-        <NavItem to="/Gallery" label="Settings" icon={<ImagesIcon size={20} />} activePath={location.pathname} />
       </div>
 
       <div className='flex-1 w-full flex items-end text-sm p-4 text-zinc-600 font-bold'>

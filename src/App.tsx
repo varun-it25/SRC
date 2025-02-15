@@ -1,7 +1,9 @@
+// import UploadMedia from "./pages/Upload-Media";
 // import Feedbacks from "./pages/Feedbacks";
 {/* <Route path="/feedbacks" element={<Feedbacks />} /> */}
+{/* <Route path="/upload-media" element={<UploadMedia />} /> */}
 
-import Gallery from "./pages/New-Gallery";
+import Gallery from "./pages/Gallery";
 import Navbar from "@/components/Navbar";
 import "./App.css";
 import Sidebar from "./components/Sidebar";
@@ -18,7 +20,6 @@ import OurTeam from "./pages/Our-Team";
 import useAuth from "./hooks/useAuth";
 import Loader from "./components/Loader";
 import Login from "./components/Login";
-import UploadMedia from "./pages/Upload-Media";
 
 const App = () => {
   const { session, process } = useAuth();
@@ -44,7 +45,6 @@ const App = () => {
             <Route path="/add-team-member" element={<Add_Team_Member />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/*" element={<Not_found />} />
-            <Route path="/upload-media" element={<UploadMedia />} />
           </Routes>
         </div>
       </BrowserRouter>
