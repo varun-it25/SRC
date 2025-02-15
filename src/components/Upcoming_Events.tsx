@@ -26,9 +26,9 @@ const Upcoming_Events = () => {
                 <TableCaption>A list of your upcoming events.</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="w-[100px]">Event</TableHead>
+                        <TableHead>Event</TableHead>
                         <TableHead>Guest</TableHead>
-                        <TableHead>Date</TableHead>
+                        <TableHead className="text-right">Date</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -37,7 +37,7 @@ const Upcoming_Events = () => {
                             <TableRow className='cursor-pointer'>
                                 <TableCell className="font-medium">{item.event_name}</TableCell>
                                 <TableCell>{item.guest_name}</TableCell>
-                                <TableCell>{item.event_date}</TableCell>
+                                <TableCell className="text-right">{item.event_date}</TableCell>
                             </TableRow>
                         ))
                     }

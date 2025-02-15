@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { X, FileUp } from 'lucide-react';
+import { uploadFile } from '@/utils/uploadFile';
+import axios from 'axios';
+import { backendUrl } from '@/data/links';
 
-function PopUp({ setClose }: { setClose: (value: boolean) => void }) {
+function PopUp({ setOpen, id }: { setOpen: (value: boolean) => void, id: string }) {
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setUploading] = useState<boolean>(false);
   const [status, setStatus] = useState<string>('');
@@ -18,25 +21,35 @@ function PopUp({ setClose }: { setClose: (value: boolean) => void }) {
     }
   };
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (!file) return;
 
     setUploading(true);
     setError('');
-    
-    setTimeout(() => {
+    setStatus('');
+
+    try {
+      const cloudnaryURL = await uploadFile(file);      
+      if (cloudnaryURL && cloudnaryURL !== "File upload failed") {
+        await axios.patch(`${backendUrl}/gallery/${id}`, {
+          cloudinaryUrl: cloudnaryURL
+        });
+        
+        setStatus('success');
+        setFile(null);
+        setOpen(false);
+        setTimeout(()=>{
+          window.location.reload()
+        },50)
+      } else {
+        setError(cloudnaryURL);
+      }
+    } catch (err) {
+      setError('An unexpected error occurred');
+      console.log(err)
+    } finally {
       setUploading(false);
-      setStatus('success');
-      console.log('Image Uploaded successfully!');
-      setFile(null);
-      setStatus('');
-      setTimeout(()=>{
-        setClose(false);        
-      },1000)
-      setTimeout(()=>{
-        window.location.reload()
-      },1500)
-    }, 5000);
+    }
   };
 
   return (
@@ -46,25 +59,43 @@ function PopUp({ setClose }: { setClose: (value: boolean) => void }) {
           {isUploading && <p>Uploading...</p>}
           {status === 'success' && <p>Image uploaded successfully!</p>}
           {error && <p className="text-red-500">{error}</p>}
+          
           {!isUploading && !file && status === '' && (
             <>
-              <label htmlFor="image" className="mb-3 px-4 py-2 text-sm font-semibold text-white bg-black hover:bg-zinc-800 flex rounded justify-center items-center cursor-pointer">
+              <label
+                htmlFor="image"
+                className="mb-3 px-4 py-2 text-sm font-semibold text-white bg-black hover:bg-zinc-800 flex rounded justify-center items-center cursor-pointer"
+              >
                 <FileUp size={16} className="mr-[0.3rem]" />
                 <span>Upload</span>
               </label>
+              <input
+                id="image"
+                type="file"
+                className="hidden"
+                accept='image/*'
+                onChange={handleFileChange}
+              />
               <p className="text-sm sm:text-base text-zinc-500">(Maximum file size: 50MB)</p>
             </>
           )}
+
           {file && !isUploading && !status && (
-            <button className="mt-3 px-4 py-2 bg-green-500 text-white rounded" onClick={handleUpload}>
+            <button
+              className="mt-3 px-4 py-2 bg-green-500 text-white rounded"
+              onClick={handleUpload}
+            >
               Confirm Upload
             </button>
           )}
         </div>
-        <button className="cursor-pointer absolute top-3 right-3 hover:text-red-500 hover:bg-red-100 text-red-400 bg-red-50 rounded-full p-2" onClick={() => setClose(false)}>
+
+        <button
+          className="cursor-pointer absolute top-3 right-3 hover:text-red-500 hover:bg-red-100 text-red-400 bg-red-50 rounded-full p-2"
+          onClick={() => setOpen(false)}
+        >
           <X size={16} />
         </button>
-        <input id="image" type="file" className="hidden" onChange={handleFileChange} />
       </div>
     </div>
   );

@@ -1,78 +1,117 @@
-import Container from '@/components/Right'
-import { Upload } from 'lucide-react'
-import { useState } from 'react'
-import PopUp from '@/components/gallery-Popup'
+import { Upload } from "lucide-react"
+import { useState, useEffect } from "react"
+import PopUp from "../components/gallery-Popup"
+import axios from "axios"
+import { backendUrl } from "@/data/links"
+import Container from "@/components/Right"
+import Loader from "@/components/Loader"
 
-interface UploadButtonProps {
-  setClose: (value: boolean) => void;
-  no: number;
+interface ImageData {
+  _id: string
+  cloudinaryUrl: string
 }
 
-const UploadButton: React.FC<UploadButtonProps> = ({ setClose, no }) => {
-  return <button onClick={() => setClose(true)} className="absolute top-3 right-3 hover:text-blue-500 hover:bg-blue-100 text-blue-400 bg-blue-50 rounded-full p-2"><Upload size={15} /></button>
-};
-
 const Gallery = () => {
-  const [isOpen, setClose] = useState<boolean>(false)
-  
+  const [isOpen, setOpen] = useState<boolean>(false)
+  const [id, setId] = useState<string>("")
+  const [images, setImages] = useState<ImageData[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(`${backendUrl}/gallery/all`)
+        setImages(response.data)
+      } catch (err) {
+        setError("Failed to load gallery images")
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  if (loading) return <Loader />
+  if (error) return <p>{error}</p>
+
   return (
     <Container>
-      { isOpen  && <PopUp setClose={setClose} /> }
-      <div className="w-full h-[50vh] p-6 pr-6 pl-6">
-        <div className="w-full mb-10 flex justify-between items-center">
-          <p className="font-bold text-2xl">Gallery</p>
-        </div>
+        <div className='w-full h-fit p-6'>
+          <div className='w-full mb-7 flex justify-between items-center'>
+            <p className='font-bold text-2xl'>SRC Gallery</p>
+          </div>
 
-        <div className="w-full pb-5">
+          { isOpen && <PopUp setOpen={setOpen} id={id} /> }
 
-          <div className={`w-full grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-4 mb-5`}>
-            <div className={'w-full relative aspect-video h-full bg-zinc-200 rounded-xl'}>
-              <img className='w-full h-full aspect-video rounded-xl' src='https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' />              
-              <UploadButton no={1} setClose={setClose} />
+          <div className={`w-full grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-4 mb-4`}>
+
+            <div className={'w-full relative aspect-video rounded-xl h-full bg-zinc-200'}>
+              <img className='w-full h-full rounded-xl' src={images[0].cloudinaryUrl} />
+              <button onClick={() => {setOpen(true); setId(images[0]._id)}} className="absolute top-3 right-3 hover:text-blue-500 hover:bg-blue-100 text-blue-400 bg-blue-50 rounded-full p-2">
+                <Upload size={15} />
+              </button>
             </div>
+
 
             <div className={'w-full aspect-video grid  grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-4'}>
-              <div className='w-full relative rounded-lg aspect-video bg-zinc-200'>
-                  <img className='w-full h-full rounded-xl' src='https://images.pexels.com/photos/433452/pexels-photo-433452.jpeg?cs=srgb&dl=pexels-pixabay-433452.jpg&fm=jpg' />
-                  <UploadButton no={1} setClose={setClose} />
+
+              <div className='w-full relative rounded-xl aspect-video bg-zinc-200'>
+                  <img className='w-full h-full rounded-xl' src={images[1].cloudinaryUrl} />
+                  <button onClick={() => {setOpen(true); setId(images[1]._id)}} className="absolute top-3 right-3 hover:text-blue-500 hover:bg-blue-100 text-blue-400 bg-blue-50 rounded-full p-2">
+                    <Upload size={15} />
+                  </button>
               </div>
 
-              <div className='w-full relative rounded-lg aspect-video bg-zinc-200'>
-                  <img className='w-full h-full rounded-xl' src='https://www.hire4event.com/blogs/wp-content/uploads/2019/03/Type-of-events.jpg' />
-                  <UploadButton no={1} setClose={setClose} />
+              <div className='w-full relative rounded-xl aspect-video bg-zinc-200'>
+                  <img className='w-full h-full rounded-xl' src={images[2].cloudinaryUrl} />
+                  <button onClick={() => {setOpen(true); setId(images[2]._id)}} className="absolute top-3 right-3 hover:text-blue-500 hover:bg-blue-100 text-blue-400 bg-blue-50 rounded-full p-2">
+                    <Upload size={15} />
+                  </button>
               </div>
 
-              <div className='w-full relative rounded-lg aspect-video bg-zinc-200'>
-                  <img className='w-full h-full rounded-xl' src='https://theroyalreception.com/assets/img/gallery/events/1.jpg' />
-                  <UploadButton no={1} setClose={setClose} />
+              <div className='w-full relative rounded-xl aspect-video bg-zinc-200'>
+                  <img className='w-full h-full rounded-xl' src={images[3].cloudinaryUrl} />
+                  <button onClick={() => {setOpen(true); setId(images[3]._id)}} className="absolute top-3 right-3 hover:text-blue-500 hover:bg-blue-100 text-blue-400 bg-blue-50 rounded-full p-2">
+                    <Upload size={15} />
+                  </button>
               </div>
 
-              <div className='w-full relative rounded-lg aspect-video bg-zinc-200'>
-                  <img className='w-full h-full rounded-xl' src='https://scandiweb.com/blog/wp-content/uploads/2020/01/ecom360_conference_hosting_successful_event.jpeg' />
-                  <UploadButton no={1} setClose={setClose} />
+              <div className='w-full relative rounded-xl aspect-video bg-zinc-200'>
+                  <img className='w-full h-full rounded-xl' src={images[4].cloudinaryUrl} />
+                  <button onClick={() => {setOpen(true); setId(images[4]._id)}} className="absolute top-3 right-3 hover:text-blue-500 hover:bg-blue-100 text-blue-400 bg-blue-50 rounded-full p-2">
+                    <Upload size={15} />
+                  </button>
               </div>
+
             </div>
-          </div>
+        </div>
 
-          <div className={`w-full grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-4`}>
+
+        <div className={`w-full grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-4 pb-10 sm:pb-5`}>
 
             <div className={'w-full relative aspect-video bg-zinc-200 rounded-xl'}>
-              <img className='w-full h-full rounded-xl' src='https://nvpmart.in/wp-content/uploads/2023/02/EventManagement.jpg' />
-              <UploadButton no={1} setClose={setClose} />
+              <img className='w-full h-full rounded-xl' src={images[5].cloudinaryUrl} />
+              <button onClick={() => {setOpen(true); setId(images[5]._id)}} className="absolute top-3 right-3 hover:text-blue-500 hover:bg-blue-100 text-blue-400 bg-blue-50 rounded-full p-2">
+                <Upload size={15} />
+              </button>
             </div>
 
             <div className={'w-full relative aspect-video bg-zinc-200 rounded-xl'}>
-              <img className='w-full h-full rounded-xl' src='https://images.ctfassets.net/3dar4x4x74wk/48LO8M4jbhPFbFIfgNO6nG/89b7b5c992cdf2628b6a047edacaf120/Delux_Tablescape_275.jpg' />
-              <UploadButton no={1} setClose={setClose} />
+              <img className='w-full h-full rounded-xl' src={images[6].cloudinaryUrl} />
+              <button onClick={() => {setOpen(true); setId(images[6]._id)}} className="absolute top-3 right-3 hover:text-blue-500 hover:bg-blue-100 text-blue-400 bg-blue-50 rounded-full p-2">
+                <Upload size={15} />
+              </button>
             </div>
 
             <div className={'w-full relative aspect-video bg-zinc-200 rounded-xl'}>
-              <img className='w-full h-full rounded-xl' src='https://img.freepik.com/free-vector/music-event-poster-template-with-abstract-shapes_1361-1316.jpg' />
-              <UploadButton no={1} setClose={setClose} />
+              <img className='w-full h-full rounded-xl' src={images[7].cloudinaryUrl} />
+              <button onClick={() => {setOpen(true); setId(images[7]._id)}} className="absolute top-3 right-3 hover:text-blue-500 hover:bg-blue-100 text-blue-400 bg-blue-50 rounded-full p-2">
+                <Upload size={15} />
+              </button>
             </div>
 
-          </div>
-          <input type='file' id='new_image' accept={`image/*`} className='hidden' />
         </div>
 
       </div>
