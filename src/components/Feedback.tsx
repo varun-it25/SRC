@@ -13,7 +13,7 @@ const Feedback = () => {
   
     useEffect(() => {
       async function fetchFeedbacks(){
-          const response = await axios.get(`${backendUrl}/feedbacks/all`)
+          const response = await axios.get(`${backendUrl}/feedbacks/most-recent`)
   
           const feedbackList = response.data
           setFeedbacks(feedbackList.length)

@@ -59,14 +59,16 @@ const EventInfo = () => {
     try {
       const response = await axios.get(`${backendUrl}/registrations/event/${id}`);
       setRegistrations(response.data);
+      console.log({registrations: response.data})
     } catch (error) {
       console.error("Error fetching registrations", error);
     }
   };
-
+  
   const fetchFeedbacks = async () => {
     try {
-      const response = await axios.get(`${backendUrl}/feedbacks/feedbacks/most-recent`);
+      const response = await axios.get(`${backendUrl}/feedbacks/event/${id}`);
+      console.log({feedbacks: response})
       setFeedbacks(response.data);
     } catch (error) {
       console.error("Error fetching feedbacks", error);
@@ -243,21 +245,14 @@ const EventInfo = () => {
                           <TableCell className="whitespace-nowrap font-medium">{name}</TableCell>
                           <TableCell className="whitespace-nowrap">{rtu_roll_no}</TableCell>
                           <TableCell className="whitespace-nowrap">{mobile_no}</TableCell>
-                          <TableCell
-                            className={`whitespace-nowrap text-right font-semibold ${
-                              experience === "Very Good" && "text-blue-500"
-                            } ${experience === "Good" && "text-purple-500"} ${
-                              experience === "Bad" && "text-red-500"
-                            } ${experience === "Amazing" && "text-green-500"}`}
-                          >
-                            {experience}
-                          </TableCell>
+                          <TableCell className={`whitespace-nowrap text-right font-semibold ${experience === "Very Good" && "text-blue-500"} ${experience === "Good" && "text-purple-500"} ${experience === "Bad" && "text-red-500"} ${experience === "Amazing" && "text-green-500"}`}>{experience}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
                   </Table>
                 </div>
               </div>
+
             </div>
           </>
         )}
