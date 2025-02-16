@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BellDot, Calendar, ChevronRight, ImagesIcon, LayoutDashboard, LogOut, LogOutIcon, MenuIcon, Moon, Plus, Settings, Sun, UploadCloud, UserPlus2, House, Users } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import logo from "@/assets/new_logo.jpg"
 
 import { Button } from "@/components/ui/button";
 import { Drawer } from '@mui/material';
@@ -35,7 +36,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link to={`/`} className="flex justify-center items-center space-x-3">
                 <div className="w-8 h-8 rounded-full">
-                    <img src="/src.png" className="w-full h-full rounded-full" />
+                    <img src={logo} className="w-full h-full rounded-full" />
                 </div>
                 <div className="whitespace-nowrap flex items-center">
                     <p className="text-black font-semibold">SRC</p>
