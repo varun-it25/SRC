@@ -204,7 +204,7 @@ const Add_Team_Member = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Head, EM">Head, EM</SelectItem>
-                    <SelectItem value="Head, GD"></SelectItem>
+                    <SelectItem value="Head, GD">Head, GD</SelectItem>
                     <SelectItem value="Head, R&D">Head, R&D</SelectItem>
                     <SelectItem value="Head, FFJ">Head, FFJ</SelectItem>
                     <SelectItem value="Head, SM">Head, SM</SelectItem>
