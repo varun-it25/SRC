@@ -203,22 +203,27 @@ const Add_Team_Member = () => {
                     <SelectValue placeholder="Select a role" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="light">Head, EM</SelectItem>
-                    <SelectItem value="light">Head, GD</SelectItem>
-                    <SelectItem value="light">Head, R&D</SelectItem>
-                    <SelectItem value="light">Head, FFJ</SelectItem>
-                    <SelectItem value="light">Head, SM</SelectItem>
-                    <SelectItem value="light">Head, CC</SelectItem>
-                    <SelectItem value="light">Head, CW</SelectItem>
-                    <SelectItem value="light">Head, Cultural</SelectItem>
-                    <SelectItem value="light">Member, EM</SelectItem>
-                    <SelectItem value="dark">Member, GD</SelectItem>
-                    <SelectItem value="system">Member, R&D</SelectItem>
-                    <SelectItem value="system">Member, FFJ</SelectItem>
-                    <SelectItem value="system">Member, SM</SelectItem>
-                    <SelectItem value="system">Member, CC</SelectItem>
-                    <SelectItem value="system">Member, CW</SelectItem>
-                    <SelectItem value="system">Member, Cultural</SelectItem>
+                    <SelectItem value="Head, EM">Head, EM</SelectItem>
+                    <SelectItem value="Head, GD"></SelectItem>
+                    <SelectItem value="Head, R&D">Head, R&D</SelectItem>
+                    <SelectItem value="Head, FFJ">Head, FFJ</SelectItem>
+                    <SelectItem value="Head, SM">Head, SM</SelectItem>
+                    <SelectItem value="Head, CC">Head, CC</SelectItem>
+                    <SelectItem value="Head, CW">Head, CW</SelectItem>
+                    <SelectItem value="Head, Cultural">
+                      Head, Cultural
+                    </SelectItem>
+                    <SelectItem value="Member, EM">Member, EM</SelectItem>
+                    <SelectItem value="Member, GD">Member, GD</SelectItem>
+                    <SelectItem value="Member, R&D">Member, R&D</SelectItem>
+                    <SelectItem value="Member, FFJ">Member, FFJ</SelectItem>
+                    <SelectItem value="Member, SM">Member, SM</SelectItem>
+                    <SelectItem value="Member, CC">Member, CC</SelectItem>
+                    <SelectItem value="Member, CW">Member, CW</SelectItem>
+                    <SelectItem value="Member, Cultural">
+                      Member, Cultural
+                    </SelectItem>
+                    <SelectItem value="Web Developer">Web Developer</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

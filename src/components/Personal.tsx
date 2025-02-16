@@ -4,7 +4,7 @@ import { ArrowUp } from 'lucide-react'
 import { useState } from 'react'
 
 function Personal(){
-    const [name, setName] = useState(`Mukesh Agarwal`)
+    const [name, setName] = useState(`Prof. Mukesh Agarwal`)
     return (
         <div>
             <div className='p-5 bg-white sm:p-6 border rounded-md mb-4'>
