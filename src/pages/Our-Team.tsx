@@ -28,6 +28,7 @@ const OurTeam = () => {
             </div>
 
             <div className='grid grid-cols-1 gap-6 sm:grid-cols-4'>
+                <Member key={`67b2c0cc5991d3576fd72d1b`} member_id={`67b2c0cc5991d3576fd72d1b`} image={`https://res.cloudinary.com/dimqol16x/image/upload/v1739768008/gzctvasaaullsnozcpre.jpg`} name={`Mr. Varun Kangotra`} designation={`Web Developer`} email={`varunkangotra.it25@jecrc.ac.in`} phone={`+919257307752`} />
                 {
                     members.map(({_id, member_image, member_name, member_role, member_email, member_mobile_no}) => {
                         return <Member key={_id} member_id={_id} image={member_image} name={member_name} designation={member_role} email={member_email} phone={member_mobile_no} />

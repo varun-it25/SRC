@@ -1,4 +1,4 @@
-import { Mail, MessageCircle, MessageSquareMore, Phone, RotateCw, Trash2 } from 'lucide-react'
+import { Mail, MessageSquareMore, Phone, Trash2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import axios from 'axios';
@@ -54,11 +54,11 @@ const Member = ({member_id, name, designation, image, phone, email }: memberData
             </AlertDialogContent>
           </AlertDialog>
 
-        <div className='w-20 h-20 rounded-full mt-[-1.4rem] border'>
+        <div className='w-20 h-20 rounded-full mt-[-0.8rem] border'>
           <img src={image} className='w-full h-full rounded-full object-cover' />
         </div>
 
-        <p className='font-bold text-xl mt-3 text-zinc-800'>{name}</p>
+        <p className='font-bold text-lg mt-3 text-zinc-800 text-center whitespace-nowrap'>{name}</p>
         <p className='text-zinc-400 text-sm font-semibold mt-1'>{designation}</p>
         <div className='flex space-x-5 justify-center items-center text-zinc-500 mt-4'>
             <Link className='bg-zinc-100 hover:bg-zinc-200 hover:text-zinc-600 p-2 rounded-full' to={`tel:${phone}`}><Phone size={16} className='cursor-pointer' /></Link>
