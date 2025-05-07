@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box} from '@mui/material';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [

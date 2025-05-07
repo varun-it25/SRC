@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BellDot, Calendar, ChevronRight, ImagesIcon, LayoutDashboard, LogOut, LogOutIcon, MenuIcon, Moon, Plus, Settings, Sun, UploadCloud, UserPlus2, House, Users } from "lucide-react";
+import { BellDot, Calendar, ChevronRight, ImagesIcon, LayoutDashboard, LogOut, LogOutIcon, MenuIcon, Settings, House, Users, Plus } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/new_logo.jpg"
 

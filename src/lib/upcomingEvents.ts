@@ -13,7 +13,7 @@ interface dataType {
   guest_mobile_no: string;
 }
 
-export function countUpcomingEvents(data: dataType[]) {
+export function countUpcomingEvents(data: dataType[]): number {
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
 
@@ -24,7 +24,8 @@ export function countUpcomingEvents(data: dataType[]) {
     const inputDate = new Date(dateString);
     inputDate.setHours(0, 0, 0, 0);
 
-    const timeDiff = inputDate - currentDate;
+    // Use getTime() to convert the Date objects to numbers
+    const timeDiff = inputDate.getTime() - currentDate.getTime();
 
     if (timeDiff > 0) {
       upcomingCount++;
