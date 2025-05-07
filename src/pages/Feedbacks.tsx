@@ -41,7 +41,7 @@ const Feedbacks = () => {
                 </TableHeader>
                 <TableBody>
                     {
-                        feedbacks.map(({ _id, event_id, name, rtu_roll_no, mobile_no, experience }) => (
+                        feedbacks.map(({ _id, name, rtu_roll_no, mobile_no, experience }) => (
                             <TableRow key={_id} className={`cursor-pointer`}>
                                 <TableCell className="font-medium">{name}</TableCell>
                                 <TableCell>{rtu_roll_no}</TableCell>
