@@ -6,6 +6,7 @@ import logo from "@/assets/new_logo.jpg"
 import { Button } from "@/components/ui/button";
 import { Drawer } from '@mui/material';
 import { useLocation, Link } from 'react-router-dom';
+import mukesh_sir_dp from '@/assets/mukesh_sir_dp.jpeg'
 
 const Navbar = () => {
     const [showDrawer, setShowDrawer] = useState(false);
@@ -77,14 +78,14 @@ const Navbar = () => {
                 <DropdownMenu>
                     <DropdownMenuTrigger>
                         <div className="w-8 h-8 rounded-full">
-                            <img src="https://media.licdn.com/dms/image/v2/D4D03AQFO0HlHI157Wg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718306147454?e=1743033600&v=beta&t=WCsbUhMuCILmN6QQVM_586kTv6bmGPwAGYFvpQ4FfiM" className="w-full h-full rounded-full" />
+                            <img src={mukesh_sir_dp} className="w-full h-full rounded-full" />
                         </div>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="mr-4 p-3 space-y-2 w-60">
                         <DropdownMenuLabel>
                             <div className="flex space-x-3 items-center">
                                 <div className="w-8 h-8 rounded-full">
-                                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQFO0HlHI157Wg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718306147454?e=1743033600&v=beta&t=WCsbUhMuCILmN6QQVM_586kTv6bmGPwAGYFvpQ4FfiM" className="w-full h-full rounded-full" />
+                                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQFO0HlHI157Wg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718306147454?e=1743033600&v=beta&t=WCsbUhMuCILmN6QQVM_586kTv6bmGPwAGYFvpQ4FfiM" className="w-full h-full rounded-full object-fill" />
                                 </div>
                                 <div className="flex flex-col space-y-[-2px]">
                                     <p className="font-semibold text-zinc-600">Mukesh Agarwal</p>
