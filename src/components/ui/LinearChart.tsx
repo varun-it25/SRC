@@ -7,7 +7,6 @@ const data = [
   { name: 'Mar', events: 3 },
   { name: 'Apr', events: 1 },
   { name: 'May', events: 2 },
-  { name: 'Jun', events: 7 },
 ];
 
 const LineChartComponent = () => {

@@ -16,6 +16,7 @@ const Feedback = () => {
           const response = await axios.get(`${backendUrl}/feedbacks/most-recent`)
   
           const feedbackList = response.data
+          console.log(feedbackList)
           setFeedbacks(feedbackList.length)
   
           setAmazingCount(0)
